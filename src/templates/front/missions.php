@@ -4,7 +4,7 @@ ob_start();
 
 <article>
     <div>
-        <table>
+        <table class="table" id="missionsTable">
             <tr>
             <?php
             if (isset($data)) {
@@ -16,9 +16,11 @@ ob_start();
             ?>
             </tr>
             <?php foreach($data as $item): ?>
-                <tr>
+                <tr onclick="location.href='<?php echo($_SERVER['PHP_SELF']."?action=mission&id=". $item['id'])?>'">
                     <?php foreach ($item as $value): ?>
-                        <td><?php echo($value) ?></td>
+                        <td>
+                           <?php echo($value) ?>
+                        </td>
                     <?php endforeach; ?>
                 </tr>
             <?php endforeach; ?>
@@ -28,4 +30,4 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require_once('layout.php');
+require_once('src/templates/layout.php');

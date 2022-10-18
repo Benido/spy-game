@@ -1,11 +1,21 @@
 <?php
 
+const MISSIONS_SQL = "SELECT 
+                id_mission AS id, 
+                code_name AS 'nom de code',       
+                CONCAT(person_agent.first_name, ' ', person_agent.last_name) AS agent,
+                country.name AS pays,
+                specialisation.title AS specialisation, 
+                start_date AS 'date de début',
+                status 
+                FROM spy_database.mission
+                INNER JOIN spy_database.country ON mission.country = country.id_country
+                INNER JOIN spy_database.specialisation ON mission.specialisation = specialisation.id_specialisation
+                INNER JOIN spy_database.agent ON mission.agent = agent.id_agent
+                INNER JOIN spy_database.person AS person_agent ON agent.person = person_agent.id_person 
+                ";
 
-function getTable(PDO $pdo) : Array
-{
-    //ajouter une vérification sur l'existence de la table ?
-
-    $stmt = $pdo->query("SELECT 
+const MISSION_DETAIL_SQL = "SELECT 
                 id_mission AS id, 
                 CONCAT(person_agent.first_name, ' ', person_agent.last_name) AS agent,
                 CONCAT(person_target.first_name, ' ', person_target.last_name) AS cible, 
@@ -27,17 +37,5 @@ function getTable(PDO $pdo) : Array
                 INNER JOIN spy_database.contact ON mission.contact = contact.id_contact    
                 INNER JOIN spy_database.person AS person_agent ON agent.person = person_agent.id_person 
                 INNER JOIN spy_database.person AS person_target ON target.person = person_target.id_person
-                INNER JOIN spy_database.person AS person_contact ON contact.person = person_contact.id_person  
-                ");
-    $data = [];
-    while ($tuple = $stmt->fetchObject()) {
-        $data[] = $tuple;
-    }
-    return $data;
-   // require_once('../src/view/table.php');
-}
-
-function getTuple()
-{
-
-}
+                INNER JOIN spy_database.person AS person_contact ON contact.person = person_contact.id_person
+                WHERE id_mission = " ;

@@ -1,0 +1,13 @@
+.siteTitle {
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu {
+    list-style: none;
+}
+
+#missionsTable tr:not(:first-of-type):hover {
+    cursor: pointer;
+    background: #e0d1c3;
+}
