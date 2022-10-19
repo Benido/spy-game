@@ -13,7 +13,10 @@
     <section>
         <nav>
             <ul class="menu">
-                <li>admin</li>
+                <li><a href="/spy-game/src/controller/front/<?php echo (isset($_SESSION['username']) ? 'logout' : 'login') ?>.php">
+                        <?php echo (isset($_SESSION['username']) ? 'Déconnexion' : 'Connexion')?>
+                    </a>
+                </li>
             </ul>
     </header>
         </nav>

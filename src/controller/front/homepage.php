@@ -1,16 +1,16 @@
 <?php
 
-namespace app\controller\front\homepage;
+namespace app\src\controller\front\homepage;
 
-use app\model\DatabaseConnection\DatabaseConnection;
+use app\src\model\DatabaseConnection\DatabaseConnection;
 
 require_once('constants.php');
 require_once('src/model/DatabaseConnection.php');
 
 $Database = New DatabaseConnection();
 
-$sql = MISSIONS_SQL;
+$query = MISSIONS_SQL;
 
-$data = $Database->select($sql);
+$data = $Database->select($query);
 require('src/templates/front/missions.php');
 

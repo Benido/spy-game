@@ -22,7 +22,7 @@ CREATE TABLE nationality
 
 CREATE TABLE person
 (
-    id_person INT UNSIGNED NOT NULL PRIMARY KEY,
+    id_person INT UNSIGNED  AUTO_INCREMENT PRIMARY KEY,
     identification_code INT UNSIGNED NOT NULL,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
@@ -36,14 +36,14 @@ CREATE TABLE person
 
 CREATE TABLE specialisation
 (
-    id_specialisation INT UNSIGNED NOT NULL PRIMARY KEY,
+    id_specialisation INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     title   VARCHAR(50) NOT NULL,
     description VARCHAR(200)
 ) ENGINE = innoDB;
 
 CREATE TABLE agent
 (
-    id_agent INT UNSIGNED NOT NULL PRIMARY KEY,
+    id_agent INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     person INT UNSIGNED NOT NULL,
     specialisation INT UNSIGNED NOT NULL,
     CONSTRAINT fk_agent_person
@@ -57,7 +57,7 @@ CREATE TABLE agent
 
 CREATE TABLE target
 (
-    id_target INT UNSIGNED NOT NULL PRIMARY KEY,
+    id_target INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     person INT UNSIGNED NOT NULL,
     CONSTRAINT fk_target_person
         FOREIGN KEY (person) REFERENCES person(id_person)
@@ -67,7 +67,7 @@ CREATE TABLE target
 
 CREATE TABLE contact
 (
-    id_contact INT UNSIGNED NOT NULL PRIMARY KEY,
+    id_contact INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     person INT UNSIGNED NOT NULL,
     CONSTRAINT fk_contact_person
         FOREIGN KEY (person) REFERENCES person(id_person)
@@ -77,7 +77,7 @@ CREATE TABLE contact
 
 CREATE TABLE hideout
 (
-    id_hideout INT UNSIGNED NOT NULL PRIMARY KEY,
+    id_hideout INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     address VARCHAR(200),
     country INT UNSIGNED NOT NULL,
     type VARCHAR(50),
@@ -89,14 +89,14 @@ CREATE TABLE hideout
 
 CREATE TABLE mission_type
 (
-    id_mission_type INT UNSIGNED NOT NULL PRIMARY KEY,
+    id_mission_type INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     description VARCHAR(200)
 ) ENGINE = innoDB;
 
 CREATE TABLE mission
 (
-    id_mission INT UNSIGNED NOT NULL PRIMARY KEY,
+    id_mission INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     agent INT UNSIGNED NOT NULL,
     target INT UNSIGNED NOT NULL,
     contact INT UNSIGNED NOT NULL,

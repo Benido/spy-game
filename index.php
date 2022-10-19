@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 try {
     if (isset($_GET['action']) && $_GET['action'] !== '') {
@@ -9,6 +10,8 @@ try {
             } else {
                 throw new Exception('Erreur : aucun identifiant de mission n\'a été envoyé');
             }
+        } else if ($_GET['action'] === 'login') {
+            require_once('src/controller/front/login.php');
         } else {
             throw new Exception('Erreur 404 : la page que vous recherchez n\'existe pas');
         }
