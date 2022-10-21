@@ -1,17 +1,21 @@
 <?php
 
+require_once ('../../model/iterateTrait.php');
+
 class Country
 {
-    private int $idCountry;
+    use iterateTrait;
+
+    private int $id_country;
     private string $name;
 
     /**
-     * @param int $idCountry
+     * @param int $id_country
      * @param string $name
      */
-    public function __construct(int $idCountry, string $name)
+    public function __construct(int $id_country, string $name)
     {
-        $this->idCountry = $idCountry;
+        $this->id_country = $id_country;
         $this->name = $name;
     }
 
@@ -30,6 +34,31 @@ class Country
     {
         $this->name = $name;
     }
+
+    /**
+     * @return array
+     */
+    public function iterateProperties(): array
+    {
+        $properties = [];
+        foreach ($this as $key => $value) {
+            $properties[] = $key;
+        }
+        return $properties;
+    }
+
+    /**
+     * @return array
+     */
+    public function iterateValues(): array
+    {
+        $values = [];
+        foreach ($this as $key => $value) {
+            $values[] = $value;
+        }
+        return $values;
+    }
+
 
 
 

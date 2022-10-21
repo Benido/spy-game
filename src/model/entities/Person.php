@@ -1,31 +1,33 @@
 <?php
-
+require_once ('../../model/iterateTrait.php');
 require_once 'Nationality.php';
 
 class Person
 {
-    private int $idPerson;
-    private int $identificationCode;
-    private string $firstName;
-    private string $lastName;
-    private DateTime $birthDate;
-    private Nationality $nationality;
+    use iterateTrait;
+
+    private int $id_person;
+    private int $identification_code;
+    private string $first_name;
+    private string $last_name;
+    private string $birth_date;
+    private int $nationality;
 
     /**
-     * @param int $idPerson
-     * @param int $identificationCode
-     * @param string $firstName
-     * @param string $lastName
-     * @param DateTime $birthDate
-     * @param Nationality $nationality
+     * @param int $id_person
+     * @param int $identification_code
+     * @param string $first_name
+     * @param string $last_name
+     * @param string $birth_date
+     * @param int $nationality
      */
-    public function __construct(int $idPerson, int $identificationCode, string $firstName, string $lastName, DateTime $birthDate, Nationality $nationality)
+    public function __construct(int $id_person, int $identification_code, string $first_name, string $last_name, string $birth_date, int $nationality)
     {
-        $this->idPerson = $idPerson;
-        $this->identificationCode = $identificationCode;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->birthDate = $birthDate;
+        $this->id_person = $id_person;
+        $this->identification_code = $identification_code;
+        $this->first_name = $first_name;
+        $this->last_name = $last_name;
+        $this->birth_date = $birth_date;
         $this->nationality = $nationality;
     }
 }

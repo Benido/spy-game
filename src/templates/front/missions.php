@@ -4,7 +4,7 @@ ob_start();
 
 <article>
     <div>
-        <table class="table" id="missionsTable">
+        <table class="table" id="missionsFront">
             <tr>
             <?php
             if (isset($data)) {

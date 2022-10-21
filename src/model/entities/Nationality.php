@@ -1,19 +1,22 @@
 <?php
+require_once ('../../model/iterateTrait.php');
 
 class Nationality
 {
-    private int $idNationality;
+    use iterateTrait;
+
+    private int $id_nationality;
     private string $name;
     private Country $country;
 
     /**
-     * @param int $idNationality
+     * @param int $id_nationality
      * @param string $name
      * @param Country $country
      */
-    public function __construct(int $idNationality, string $name, Country $country)
+    public function __construct(int $id_nationality, string $name, Country $country)
     {
-        $this->idNationality = $idNationality;
+        $this->id_nationality = $id_nationality;
         $this->name = $name;
         $this->country = $country;
     }

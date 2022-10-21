@@ -36,6 +36,6 @@ insert into mission_type (id_mission_type, title, description) values (1, 'eu', 
 insert into mission_type (id_mission_type, title, description) values (2, 'nunc', 'congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed');
 insert into mission_type (id_mission_type, title, description) values (3, 'nulla', 'ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie');
 
-insert into mission (id_mission, agent, target, contact, code_name, status, country, hideout, specialisation, start_date, end_date) values (1, 1, 1, 1, 'nunc commodo', 'porta', 3, 3, 1,'2023-07-17', '2022-12-12');
-insert into mission (id_mission, agent, target, contact, code_name, status, country, hideout, specialisation, start_date, end_date) values (2, 2, 2, 2, 'corbeau chatoyant', 'porta', 3, 3, 2,'2023-07-17', '2022-12-12');
+insert into mission (id_mission, agent, target, contact, code_name, mission_type, status, country, hideout, specialisation, start_date, end_date) values (1, 1, 1, 1, 'nunc commodo', 'porta',2, 3, 3, 1,'2023-07-17', '2022-12-12');
+insert into mission (id_mission, agent, target, contact, code_name, mission_type, status, country, hideout, specialisation, start_date, end_date) values (2, 2, 2, 2, 'corbeau chatoyant', 'porta',1, 3, 3, 2,'2023-07-17', '2022-12-12');
 

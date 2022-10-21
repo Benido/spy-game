@@ -2,23 +2,23 @@
 
 namespace app\src\controller\front\login;
 
-use app\src\model\DatabaseConnection\DatabaseConnection;
+use CRUD;
 
 session_start();
 
 if (!array_key_exists('username', $_SESSION)){
-require_once('../../model/DatabaseConnection.php');
-$Database = new DatabaseConnection();
+require_once('../../model/CRUD.php');
+$db = new CRUD();
 $errorMessage = '';
 
 if (isset($_POST['username'], $_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $query = "SELECT * FROM `user` WHERE username='$username' AND password='" . hash('sha256', $password) . "' LIMIT 1";
-    $data = $Database->select($query);
+    $data = $db->read($query);
     if (!empty($data)) {
        $_SESSION['username'] = $username;
-        header("Location: ../back/panel.php");
+        header("Location: ../back/missions.php");
     } else {
         $errorMessage = "Le nom d'utilisateur ou le mot de passe est incorrect";
     }

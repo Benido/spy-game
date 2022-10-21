@@ -1,19 +1,22 @@
 <?php
+require_once ('../../model/iterateTrait.php');
 
 class Specialisation
 {
-    private int $idSpecialisation;
+    use iterateTrait;
+
+    private int $id_specialisation;
     private string $title;
     private string $description;
 
     /**
-     * @param int $idSpecialisation
+     * @param int $id_specialisation
      * @param string $title
      * @param string $description
      */
-    public function __construct(int $idSpecialisation, string $title, string $description)
+    public function __construct(int $id_specialisation, string $title, string $description)
     {
-        $this->idSpecialisation = $idSpecialisation;
+        $this->id_specialisation = $id_specialisation;
         $this->title = $title;
         $this->description = $description;
     }

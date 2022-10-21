@@ -1,239 +1,52 @@
 <?php
+require_once ('../../model/iterateTrait.php');
 
 class Mission
 {
-    private int $idMission;
-    private Agent $agent;
-    private Target $target;
-    private Contact $contact;
-    private string $codeName;
+    use iterateTrait;
+
+    private int $id_mission;
+    private int $agent;
+    private int $target;
+    private int $contact;
+    private string $code_name;
+    private int $mission_type;
     private string $status;
-    private Country $country;
-    private Hideout $hideout;
-    private Specialisation $specialisation;
-    private DateTime $startDate;
-    private DateTime $endDate;
-    private MissionType $missionType;
+    private int $country;
+    private int $hideout;
+    private int $specialisation;
+    private string $start_date;
+    private string $end_date;
 
     /**
-     * @param int $idMission
-     * @param Agent $agent
-     * @param Target $target
-     * @param Contact $contact
-     * @param string $codeName
+     * @param int $id_mission
+     * @param int $agent
+     * @param int $target
+     * @param int $contact
+     * @param string $code_name
+     * @param int $mission_type
      * @param string $status
-     * @param Country $country
-     * @param Hideout $hideout
-     * @param Specialisation $specialisation
-     * @param DateTime $startDate
-     * @param DateTime $endDate
-     * @param MissionType $missionType
+     * @param int $country
+     * @param int $hideout
+     * @param int $specialisation
+     * @param string $start_date
+     * @param string $end_date
      */
-    public function __construct(int $idMission, Agent $agent, Target $target, Contact $contact, string $codeName, string $status, Country $country, Hideout $hideout, Specialisation $specialisation, DateTime $startDate, DateTime $endDate, MissionType $missionType)
+    public function __construct(int $id_mission, int $agent, int $target, int $contact, string $code_name, int $mission_type, string $status, int $country, int $hideout, int $specialisation, string $start_date, string $end_date)
     {
-        $this->idMission = $idMission;
+        $this->id_mission = $id_mission;
         $this->agent = $agent;
         $this->target = $target;
         $this->contact = $contact;
-        $this->codeName = $codeName;
+        $this->code_name = $code_name;
+        $this->mission_type = $mission_type;
         $this->status = $status;
         $this->country = $country;
         $this->hideout = $hideout;
         $this->specialisation = $specialisation;
-        $this->startDate = $startDate;
-        $this->endDate = $endDate;
-        $this->missionType = $missionType;
+        $this->start_date =$start_date;
+        $this->end_date = $end_date;
     }
 
-    /**
-     * @return int
-     */
-    public function getIdMission(): int
-    {
-        return $this->idMission;
-    }
 
-    /**
-     * @param int $idMission
-     */
-    public function setIdMission(int $idMission): void
-    {
-        $this->idMission = $idMission;
-    }
-
-    /**
-     * @return Agent
-     */
-    public function getAgent(): Agent
-    {
-        return $this->agent;
-    }
-
-    /**
-     * @param Agent $agent
-     */
-    public function setAgent(Agent $agent): void
-    {
-        $this->agent = $agent;
-    }
-
-    /**
-     * @return Target
-     */
-    public function getTarget(): Target
-    {
-        return $this->target;
-    }
-
-    /**
-     * @param Target $target
-     */
-    public function setTarget(Target $target): void
-    {
-        $this->target = $target;
-    }
-
-    /**
-     * @return Contact
-     */
-    public function getContact(): Contact
-    {
-        return $this->contact;
-    }
-
-    /**
-     * @param Contact $contact
-     */
-    public function setContact(Contact $contact): void
-    {
-        $this->contact = $contact;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCodeName(): string
-    {
-        return $this->codeName;
-    }
-
-    /**
-     * @param string $codeName
-     */
-    public function setCodeName(string $codeName): void
-    {
-        $this->codeName = $codeName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param string $status
-     */
-    public function setStatus(string $status): void
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * @return Country
-     */
-    public function getCountry(): Country
-    {
-        return $this->country;
-    }
-
-    /**
-     * @param Country $country
-     */
-    public function setCountry(Country $country): void
-    {
-        $this->country = $country;
-    }
-
-    /**
-     * @return Hideout
-     */
-    public function getHideout(): Hideout
-    {
-        return $this->hideout;
-    }
-
-    /**
-     * @param Hideout $hideout
-     */
-    public function setHideout(Hideout $hideout): void
-    {
-        $this->hideout = $hideout;
-    }
-
-    /**
-     * @return Specialisation
-     */
-    public function getSpecialisation(): Specialisation
-    {
-        return $this->specialisation;
-    }
-
-    /**
-     * @param Specialisation $specialisation
-     */
-    public function setSpecialisation(Specialisation $specialisation): void
-    {
-        $this->specialisation = $specialisation;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getStartDate(): DateTime
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * @param DateTime $startDate
-     */
-    public function setStartDate(DateTime $startDate): void
-    {
-        $this->startDate = $startDate;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getEndDate(): DateTime
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * @param DateTime $endDate
-     */
-    public function setEndDate(DateTime $endDate): void
-    {
-        $this->endDate = $endDate;
-    }
-
-    /**
-     * @return MissionType
-     */
-    public function getMissionType(): MissionType
-    {
-        return $this->missionType;
-    }
-
-    /**
-     * @param MissionType $missionType
-     */
-    public function setMissionType(MissionType $missionType): void
-    {
-        $this->missionType = $missionType;
-    }
 }

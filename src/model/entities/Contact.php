@@ -1,24 +1,26 @@
 <?php
-
+require_once ('../../model/iterateTrait.php');
 require_once 'Person.php';
 
 class Contact extends Person
 {
-    private int $idContact;
+    use iterateTrait;
+
+    private int $id_contact;
 
     /**
-     * @param int $idContact
-     * @param int $idPerson
-     * @param int $identificationCode
-     * @param string $firstName
-     * @param string $lastName
-     * @param DateTime $birthDate
-     * @param Nationality $nationality
+     * @param int $id_contact
+     * @param int $id_person
+     * @param int $identification_code
+     * @param string $first_name
+     * @param string $last_name
+     * @param string $birth_date
+     * @param int $nationality
      */
-    public function __construct(int $idPerson, int $identificationCode, string $firstName, string $lastName, DateTime $birthDate, Nationality $nationality, int $idContact)
+    public function __construct(int $id_person, int $identification_code, string $first_name, string $last_name, string $birth_date, int $nationality, int $id_contact)
     {
-        parent::construct($idPerson, $identificationCode, $firstName, $lastName, $birthDate, $nationality);
-        $this->idContact = $idContact;
+        parent::construct($id_person, $identification_code, $first_name, $last_name, $birth_date, $nationality);
+        $this->id_contact = $id_contact;
     }
 
     /**
@@ -26,15 +28,15 @@ class Contact extends Person
      */
     public function getIdContact(): int
     {
-        return $this->idContact;
+        return $this->id_contact;
     }
 
     /**
-     * @param int $idContact
+     * @param int $id_contact
      */
-    public function setIdContact(int $idContact): void
+    public function setIdContact(int $id_contact): void
     {
-        $this->idContact = $idContact;
+        $this->id_contact = $id_contact;
     }
 
     /**
@@ -42,15 +44,15 @@ class Contact extends Person
      */
     public function getIdPerson(): int
     {
-        return $this->idPerson;
+        return $this->id_person;
     }
 
     /**
-     * @param int $idPerson
+     * @param int $id_person
      */
-    public function setIdPerson(int $idPerson): void
+    public function setIdPerson(int $id_person): void
     {
-        $this->idPerson = $idPerson;
+        $this->id_person = $id_person;
     }
 
     /**
@@ -58,15 +60,15 @@ class Contact extends Person
      */
     public function getIdentificationCode(): int
     {
-        return $this->identificationCode;
+        return $this->identification_code;
     }
 
     /**
-     * @param int $identificationCode
+     * @param int $identification_code
      */
-    public function setIdentificationCode(int $identificationCode): void
+    public function setIdentificationCode(int $identification_code): void
     {
-        $this->identificationCode = $identificationCode;
+        $this->identification_code = $identification_code;
     }
 
     /**
@@ -74,15 +76,15 @@ class Contact extends Person
      */
     public function getFirstName(): string
     {
-        return $this->firstName;
+        return $this->first_name;
     }
 
     /**
-     * @param string $firstName
+     * @param string $first_name
      */
-    public function setFirstName(string $firstName): void
+    public function setFirstName(string $first_name): void
     {
-        $this->firstName = $firstName;
+        $this->first_name = $first_name;
     }
 
     /**
@@ -90,45 +92,45 @@ class Contact extends Person
      */
     public function getLastName(): string
     {
-        return $this->lastName;
+        return $this->last_name;
     }
 
     /**
-     * @param string $lastName
+     * @param string $last_name
      */
-    public function setLastName(string $lastName): void
+    public function setLastName(string $last_name): void
     {
-        $this->lastName = $lastName;
+        $this->last_name = $last_name;
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getBirthDate(): DateTime
+    public function getBirthDate(): string
     {
-        return $this->birthDate;
+        return $this->birth_date;
     }
 
     /**
-     * @param DateTime $birthDate
+     * @param string $birth_date
      */
-    public function setBirthDate(DateTime $birthDate): void
+    public function setBirthDate(string $birth_date): void
     {
-        $this->birthDate = $birthDate;
+        $this->birth_date = $birth_date;
     }
 
     /**
-     * @return Nationality
+     * @return int
      */
-    public function getNationality(): Nationality
+    public function getNationality(): int
     {
         return $this->nationality;
     }
 
     /**
-     * @param Nationality $nationality
+     * @param int $nationality
      */
-    public function setNationality(Nationality $nationality): void
+    public function setNationality(int $nationality): void
     {
         $this->nationality = $nationality;
     }

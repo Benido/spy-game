@@ -101,6 +101,7 @@ CREATE TABLE mission
     target INT UNSIGNED NOT NULL,
     contact INT UNSIGNED NOT NULL,
     code_name VARCHAR(50) NOT NULL,
+    mission_type INT UNSIGNED NOT NULL,
     status VARCHAR(50) NOT NULL,
     country INT UNSIGNED NOT NULL,
     hideout INT UNSIGNED,
@@ -117,6 +118,10 @@ CREATE TABLE mission
             ON DELETE CASCADE,
     CONSTRAINT fk_mission_contact
         FOREIGN KEY (contact) REFERENCES contact(id_contact)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE,
+    CONSTRAINT fk_mission_mission_type
+        FOREIGN KEY (mission_type) REFERENCES mission_type(id_mission_type)
             ON UPDATE CASCADE
             ON DELETE CASCADE,
     CONSTRAINT fk_mission_country

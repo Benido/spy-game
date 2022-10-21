@@ -2,15 +2,15 @@
 
 namespace app\src\controller\front\homepage;
 
-use app\src\model\DatabaseConnection\DatabaseConnection;
+use CRUD;
 
 require_once('constants.php');
-require_once('src/model/DatabaseConnection.php');
+require_once('src/model/CRUD.php');
 
-$Database = New DatabaseConnection();
+$db = new CRUD();
 
 $query = MISSIONS_SQL;
 
-$data = $Database->select($query);
+$data = $db->read($query);
 require('src/templates/front/missions.php');
 

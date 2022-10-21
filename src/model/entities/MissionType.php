@@ -1,19 +1,22 @@
 <?php
+require_once ('../../model/iterateTrait.php');
 
 class MissionType
 {
-    private int $idMissionType;
+    use iterateTrait;
+
+    private int $id_mission_type;
     private string $title;
     private string $description;
 
     /**
-     * @param int $idMissionType
+     * @param int $id_mission_type
      * @param string $title
      * @param string $description
      */
-    public function __construct(int $idMissionType, string $title, string $description)
+    public function __construct(int $id_mission_type, string $title, string $description)
     {
-        $this->idMissionType = $idMissionType;
+        $this->id_mission_type = $id_mission_type;
         $this->title = $title;
         $this->description = $description;
     }

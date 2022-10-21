@@ -1,21 +1,24 @@
 <?php
+require_once ('../../model/iterateTrait.php');
 
 class Hideout
 {
-    private int $idHideout;
+    use iterateTrait;
+
+    private int $id_hideout;
     private string $address;
-    private Country $country;
+    private int $country;
     private string $type;
 
     /**
-     * @param int $idHideout
+     * @param int $id_hideout
      * @param string $address
-     * @param Country $country
+     * @param int $country
      * @param string $type
      */
-    public function __construct(int $idHideout, string $address, Country $country, string $type)
+    public function __construct(int $id_hideout, string $address, int $country, string $type)
     {
-        $this->idHideout = $idHideout;
+        $this->id_hideout = $id_hideout;
         $this->address = $address;
         $this->country = $country;
         $this->type = $type;
@@ -26,7 +29,7 @@ class Hideout
      */
     public function getIdHideout(): int
     {
-        return $this->idHideout;
+        return $this->id_hideout;
     }
 
     /**
@@ -46,17 +49,17 @@ class Hideout
     }
 
     /**
-     * @return Country
+     * @return int
      */
-    public function getCountry(): Country
+    public function getCountry(): int
     {
         return $this->country;
     }
 
     /**
-     * @param Country $country
+     * @param int $country
      */
-    public function setCountry(Country $country): void
+    public function setCountry(int $country): void
     {
         $this->country = $country;
     }

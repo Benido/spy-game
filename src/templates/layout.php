@@ -7,25 +7,40 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="/spy-game/public/styles.css" />
 </head>
-<body>
-    <header>
+<body class="d-flex flex-column">
+    <header class="d-flex justify-content-between p-3">
         <a class="siteTitle" href="/spy-game/index.php"><h1>Spy game - Gérez les espions du KGB</h1></a>
-    <section>
-        <nav>
-            <ul class="menu">
-                <li><a href="/spy-game/src/controller/front/<?php echo (isset($_SESSION['username']) ? 'logout' : 'login') ?>.php">
-                        <?php echo (isset($_SESSION['username']) ? 'Déconnexion' : 'Connexion')?>
-                    </a>
-                </li>
-            </ul>
+        <p><?php echo (isset($_SESSION['username'])) ? 'Bienvenue '.$_SESSION["username"] : '' ?></p>
+        <section>
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <a href="/spy-game/src/controller/front/<?php echo (isset($_SESSION['username']) ? 'logout' : 'login') ?>.php">
+                            <?php echo (isset($_SESSION['username']) ? 'Déconnexion' : 'Connexion')?>
+                        </a>
+                    </li>
+                   <?php echo (isset($_SESSION['username'])) ?
+                   '<li>
+                        <a href="/spy-game/src/controller/back/missions.php">Tableau de bord</a>
+                    </li>'
+                    :
+                     null
+                   ?>
+                </ul>
+            </nav>
+        </section>
     </header>
-        </nav>
-    </section>
-    <section>
+    <main class="flex-fill" id="#main">
         <?php echo($content) ?>
-    </section>
+    </main>
     <footer>
         <p>2022 - Tous droits réservés</p>
     </footer>
+    <?php if (isset($script)) {
+        echo '    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js" defer></script>
+    <script type="text/javascript" src="/spy-game/public/scripts/jquery.tabledit.js" defer></script>
+    <script type="text/javascript" src="/spy-game/public/scripts/' . $script . '" defer></script>';
+    } ?>
 </body>
 </html>
