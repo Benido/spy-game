@@ -1,0 +1,239 @@
+<?php
+
+class Mission
+{
+    private int $id_mission;
+    private Agent $agent;
+    private Target $target;
+    private Contact $contact;
+    private string $code_name;
+    private string $status;
+    private Country $country;
+    private Hideout $hideout;
+    private Specialisation $specialisation;
+    private DateTime $start_date;
+    private DateTime $end_date;
+    private MissionType $missionType;
+
+    /**
+     * @param int $id_mission
+     * @param Agent $agent
+     * @param Target $target
+     * @param Contact $contact
+     * @param string $code_name
+     * @param string $status
+     * @param Country $country
+     * @param Hideout $hideout
+     * @param Specialisation $specialisation
+     * @param DateTime $start_date
+     * @param DateTime $end_date
+     * @param MissionType $missionType
+     */
+    public function __construct(int $id_mission, Agent $agent, Target $target, Contact $contact, string $code_name, string $status, Country $country, Hideout $hideout, Specialisation $specialisation, DateTime $start_date, DateTime $end_date, MissionType $missionType)
+    {
+        $this->id_mission = $id_mission;
+        $this->agent = $agent;
+        $this->target = $target;
+        $this->contact = $contact;
+        $this->code_name = $code_name;
+        $this->status = $status;
+        $this->country = $country;
+        $this->hideout = $hideout;
+        $this->specialisation = $specialisation;
+        $this->start_date = $start_date;
+        $this->end_date = $end_date;
+        $this->missionType = $missionType;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdMission(): int
+    {
+        return $this->id_mission;
+    }
+
+    /**
+     * @param int $id_mission
+     */
+    public function setIdMission(int $id_mission): void
+    {
+        $this->id_mission = $id_mission;
+    }
+
+    /**
+     * @return Agent
+     */
+    public function getAgent(): Agent
+    {
+        return $this->agent;
+    }
+
+    /**
+     * @param Agent $agent
+     */
+    public function setAgent(Agent $agent): void
+    {
+        $this->agent = $agent;
+    }
+
+    /**
+     * @return Target
+     */
+    public function getTarget(): Target
+    {
+        return $this->target;
+    }
+
+    /**
+     * @param Target $target
+     */
+    public function setTarget(Target $target): void
+    {
+        $this->target = $target;
+    }
+
+    /**
+     * @return Contact
+     */
+    public function getContact(): Contact
+    {
+        return $this->contact;
+    }
+
+    /**
+     * @param Contact $contact
+     */
+    public function setContact(Contact $contact): void
+    {
+        $this->contact = $contact;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodeName(): string
+    {
+        return $this->code_name;
+    }
+
+    /**
+     * @param string $code_name
+     */
+    public function setCodeName(string $code_name): void
+    {
+        $this->code_name = $code_name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return Country
+     */
+    public function getCountry(): Country
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param Country $country
+     */
+    public function setCountry(Country $country): void
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return Hideout
+     */
+    public function getHideout(): Hideout
+    {
+        return $this->hideout;
+    }
+
+    /**
+     * @param Hideout $hideout
+     */
+    public function setHideout(Hideout $hideout): void
+    {
+        $this->hideout = $hideout;
+    }
+
+    /**
+     * @return Specialisation
+     */
+    public function getSpecialisation(): Specialisation
+    {
+        return $this->specialisation;
+    }
+
+    /**
+     * @param Specialisation $specialisation
+     */
+    public function setSpecialisation(Specialisation $specialisation): void
+    {
+        $this->specialisation = $specialisation;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getStartDate(): DateTime
+    {
+        return $this->start_date;
+    }
+
+    /**
+     * @param DateTime $start_date
+     */
+    public function setStartDate(DateTime $start_date): void
+    {
+        $this->start_date = $start_date;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getEndDate(): DateTime
+    {
+        return $this->end_date;
+    }
+
+    /**
+     * @param DateTime $end_date
+     */
+    public function setEndDate(DateTime $end_date): void
+    {
+        $this->end_date = $end_date;
+    }
+
+    /**
+     * @return MissionType
+     */
+    public function getMissionType(): MissionType
+    {
+        return $this->missionType;
+    }
+
+    /**
+     * @param MissionType $missionType
+     */
+    public function setMissionType(MissionType $missionType): void
+    {
+        $this->missionType = $missionType;
+    }
+}

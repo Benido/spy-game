@@ -15,7 +15,7 @@ if ($input['action'] == 'edit') {
     if ($update_field && $input['id_mission_type']) {
         $db = new CRUD();
         $db->update('mission_type', $update_field[0], $update_field[1], 'id_mission_type', (int) ($input['id_mission_type']));
-        echo("<script>alert('PHP:' . var_dump($db->error );</script>");
+        echo('PHP:' . var_dump($input));
         $_SESSION['error']= $db->error;
     }
 }

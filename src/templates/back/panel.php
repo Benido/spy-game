@@ -12,7 +12,7 @@ ob_start()
                 <li class="list-group-item">Agent</li>
                 <li class="list-group-item">Cible</li>
                 <li class="list-group-item">Contact</li>
-                <li class="list-group-item">Pays</li>
+                <li class="list-group-item"><a href="/spy-game/src/controller/back/countries.php">Pays</a></li>
                 <li class="list-group-item">Nationalité</li>
                 <li class="list-group-item">Planque</li>
             </ul>

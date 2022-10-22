@@ -19,8 +19,5 @@ $table = 'missionTable.php';
 $script = 'missionsEditable.js';
 $error = $db->error;
 
-$sesserror = $_SESSION['error'];
-
-echo "<p> $sesserror </p>";
 require_once('../../templates/back/panel.php');
 
