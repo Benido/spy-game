@@ -11,13 +11,16 @@ if(!isset($_SESSION["username"])) {
 }
 $db = new CRUD();
 
-$missions = $db->read('SELECT * FROM mission');
-foreach ($missions as $i => $mission) {
-    $missions[$i] = new Mission(...$mission);
+$table = $db->read('SELECT * FROM mission');
+foreach ($table as $i => $mission) {
+    $table[$i] = new Mission(...$mission);
 }
-$table = 'missionTable.php';
+
+$properties = Mission::iterateProperties();
+$tableName = "mission";
+$title = 'Missions';
 $script = 'missionsEditable.js';
-$error = $db->error;
+
 
 require_once('../../templates/back/panel.php');
 

@@ -11,12 +11,15 @@ if(!isset($_SESSION["username"])) {
 }
 $db = new CRUD();
 
-$countries = $db->read('SELECT * FROM country');
-foreach ($countries as $i => $country) {
-    $countries[$i] = new Country(...$country);
+$table = $db->read('SELECT * FROM country');
+foreach ($table as $i => $country) {
+    $table[$i] = new Country(...$country);
 }
-$table = 'countryTable.php';
+
+$properties = Country::iterateProperties();
+$tableName = 'country';
+$title = 'Pays';
 $script = 'countriesEditable.js';
-$error = $db->error;
+
 
 require_once('../../templates/back/panel.php');

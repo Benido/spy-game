@@ -16,11 +16,11 @@ trait iterateTrait {
     /**
      * @return array
      */
-    public function iterateProperties(): array
+    public static function iterateProperties(): array
     {
         $properties = [];
-        foreach ($this as $key => $value) {
-            $properties[] = $key;
+        foreach (array_keys(get_class_vars(__CLASS__)) as $property) {
+            $properties[] = $property;
         }
         return $properties;
     }

@@ -1,5 +1,5 @@
 $(function(){
-    $('#missionTypes').Tabledit({
+    $('#mission_type').Tabledit({
         deleteButton: false,
         editButton: false,
         columns: {

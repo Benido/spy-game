@@ -10,13 +10,14 @@ function edit (string $table) {
 
     if ($input['action'] == 'edit') {
         $update_field = [];
-        //We pop the action key so we iterate only on the columns
-        foreach (array_pop($input) as $column => $value){
+        //We drop the id and action keys so we iterate only on the editable columns
+        array_pop($input);
+        foreach (array_slice($input, 1) as $column => $value){
             $update_field = [$column, trim($value)];
         }
         if ($update_field && $input['id_'. $table]) {
             $db = new CRUD();
-            $db->update('specialisation', $update_field[0], $update_field[1], 'id_'.$table, (int)($input['id_'.$table]));
+            $db->update($table, $update_field[0], $update_field[1], 'id_'.$table, (int)($input['id_'.$table]));
             echo var_dump($db->error );
             echo '<br>';
             echo var_dump($update_field);

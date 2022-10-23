@@ -6,20 +6,20 @@ ob_start()
         <nav class="col-2">
             <ul class="list-group">
                 <li class="list-group-item"><a href="/spy-game/src/controller/back/missions.php">Missions</a></li>
-                <li class="list-group-item"><a href="/spy-game/src/controller/back/missionTypes.php">Type de mission</a></li>
-                <li class="list-group-item"><a href="/spy-game/src/controller/back/specialisations.php">Spécialisation</a></li>
-                <li class="list-group-item">Personne</li>
-                <li class="list-group-item">Agent</li>
-                <li class="list-group-item">Cible</li>
-                <li class="list-group-item">Contact</li>
+                <li class="list-group-item"><a href="/spy-game/src/controller/back/missionTypes.php">Types de mission</a></li>
+                <li class="list-group-item"><a href="/spy-game/src/controller/back/specialisations.php">Spécialisations</a></li>
+                <li class="list-group-item"><a href="/spy-game/src/controller/back/persons.php">Personnes</a></li>
+                <li class="list-group-item"><a href="/spy-game/src/controller/back/agents.php">Agents</a></li>
+                <li class="list-group-item"><a href="/spy-game/src/controller/back/targets.php">Cibles</a></li>
+                <li class="list-group-item"><a href="/spy-game/src/controller/back/contacts.php">Contacts</a></li>
                 <li class="list-group-item"><a href="/spy-game/src/controller/back/countries.php">Pays</a></li>
-                <li class="list-group-item">Nationalité</li>
-                <li class="list-group-item">Planque</li>
+                <li class="list-group-item"><a href="/spy-game/src/controller/back/nationalities.php">Nationalités</a></li>
+                <li class="list-group-item"><a href="/spy-game/src/controller/back/hideouts.php">Planques</a></li>
             </ul>
         </nav>
         <div class="col-10">
             <div>
-                <?php require_once($table); ?>
+                <?php require '../../templates/back/table.php'; ?>
             </div>
         </div>
     </div>

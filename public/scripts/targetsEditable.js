@@ -1,14 +1,14 @@
 $(function(){
-    $('#country').Tabledit({
+    $('#taret').Tabledit({
         deleteButton: false,
         editButton: false,
         columns: {
-            identifier: [0, 'id_country'],
+            identifier: [0, 'id_target'],
             editable: [
-                [1, 'name']
+                [1, 'person']
             ]
         },
         hideIdentifier: false,
-        url: '../../model/forms/countriesEdit.php'
+        url: '../../model/forms/targetsEdit.php'
     });
 });

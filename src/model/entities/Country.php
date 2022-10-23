@@ -35,29 +35,6 @@ class Country
         $this->name = $name;
     }
 
-    /**
-     * @return array
-     */
-    public function iterateProperties(): array
-    {
-        $properties = [];
-        foreach ($this as $key => $value) {
-            $properties[] = $key;
-        }
-        return $properties;
-    }
-
-    /**
-     * @return array
-     */
-    public function iterateValues(): array
-    {
-        $values = [];
-        foreach ($this as $key => $value) {
-            $values[] = $value;
-        }
-        return $values;
-    }
 
 
 

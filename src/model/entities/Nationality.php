@@ -7,14 +7,14 @@ class Nationality
 
     private int $id_nationality;
     private string $name;
-    private Country $country;
+    private int $country;
 
     /**
      * @param int $id_nationality
      * @param string $name
-     * @param Country $country
+     * @param int $country
      */
-    public function __construct(int $id_nationality, string $name, Country $country)
+    public function __construct(int $id_nationality, string $name, int $country)
     {
         $this->id_nationality = $id_nationality;
         $this->name = $name;
@@ -38,17 +38,17 @@ class Nationality
     }
 
     /**
-     * @return Country
+     * @return int
      */
-    public function getCountry(): Country
+    public function getCountry(): int
     {
         return $this->country;
     }
 
     /**
-     * @param Country $country
+     * @param int $country
      */
-    public function setCountry(Country $country): void
+    public function setCountry(int $country): void
     {
         $this->country = $country;
     }

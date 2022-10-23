@@ -1,12 +1,16 @@
 <article>
     <div>
-        <h2>Countries</h2>
-        <table class="table" id="countries">
+        <h2><?php echo $title ?></h2>
+        <table class='table' id=<?php echo $tableName ?>>
             <tr>
-                <th>id_country</th>
-                <th>name</th>
+                <?php
+                foreach ($properties as $property) :?>
+                <th><?php echo($property) ?></th>
+                <?php
+                endforeach;
+                ?>
             </tr>
-            <?php foreach($countries as $item): ?>
+            <?php foreach($table as $item): ?>
                 <tr>
                     <?php foreach($item->iterateValues() as $value): ?>
                         <td>

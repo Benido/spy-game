@@ -11,15 +11,13 @@ if(!isset($_SESSION["username"])) {
 }
 $db = new CRUD();
 
-$specialisations = $db->read('SELECT * FROM specialisation');
-foreach ($specialisations as $i => $specialisation) {
-    $specialisations[$i] = new specialisation(...$specialisation);
+$table = $db->read('SELECT * FROM specialisation');
+foreach ($table as $i => $specialisation) {
+    $table[$i] = new specialisation(...$specialisation);
 }
-$table = 'specialisationTable.php';
+$properties = Specialisation::iterateProperties();
+$tableName = 'specialisation';
+$title = 'Spécialisation';
 $script = 'specialisationEditable.js';
-$error = $db->error;
 
-$sesserror = $_SESSION['error'];
-
-echo "<p> $sesserror </p>";
 require_once('../../templates/back/panel.php');
