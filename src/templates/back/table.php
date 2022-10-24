@@ -1,10 +1,11 @@
 <article>
+
     <div>
-        <h2><?php echo $title ?></h2>
-        <table class='table' id=<?php echo $tableName ?>>
+        <h2><?php echo $data['tableTitle'] ?></h2>
+        <table class='table' id=<?php echo $data['tableName'] ?>>
             <tr>
                 <?php
-                foreach ($properties as $property) :?>
+                foreach ($data['tableProperties'] as $property) :?>
                 <th><?php echo($property) ?></th>
                 <?php
                 endforeach;

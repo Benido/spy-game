@@ -1,5 +1,6 @@
 $(function(){
     $('#person').Tabledit({
+        eventType: 'dblclick',
         deleteButton: false,
         editButton: false,
         columns: {

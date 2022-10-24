@@ -1,5 +1,6 @@
 $(function(){
     $('#taret').Tabledit({
+        eventType: 'dblclick',
         deleteButton: false,
         editButton: false,
         columns: {

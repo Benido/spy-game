@@ -1,5 +1,6 @@
 $(function(){
     $('#specialisations').Tabledit({
+        eventType: 'dblclick',
         deleteButton: false,
         editButton: false,
         columns: {

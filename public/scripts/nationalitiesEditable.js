@@ -1,5 +1,6 @@
 $(function(){
     $('#nationality').Tabledit({
+        eventType: 'dblclick',
         deleteButton: false,
         editButton: false,
         columns: {

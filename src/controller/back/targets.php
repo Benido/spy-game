@@ -1,25 +1,17 @@
 <?php
 
 require_once('../../model/entities/Target.php');
-require_once ('../../model/CRUD.php');
-
+require_once('../../model/repositories/TargetRepo.php');
 session_start();
 
 if(!isset($_SESSION["username"])) {
     header("Location: ../front/login.php");
     exit();
 }
-$db = new CRUD();
+$repo = new TargetRepo();
 
-$table = $db->read('SELECT * FROM target');
-foreach ($table as $i => $target) {
-    $table[$i] = new Target(...$target);
-}
-
-$properties = Target::iterateProperties();
-$tableName = 'target';
-$title = 'Targets';
-$script = 'targetsEditable.js';
+$table = $repo->readTargets();
+$data = $repo->getTableData();
 
 
 require_once('../../templates/back/panel.php');

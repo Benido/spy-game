@@ -36,11 +36,11 @@
     <footer>
         <p>2022 - Tous droits réservés</p>
     </footer>
-    <?php if (isset($script)) {
+    <?php if (isset($data['scriptTabledit'])) {
         echo '    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js" defer></script>
     <script type="text/javascript" src="/spy-game/public/scripts/jquery.tabledit.js" defer></script>
-    <script type="text/javascript" src="/spy-game/public/scripts/' . $script . '" defer></script>';
+    <script type="text/javascript" src="/spy-game/public/scripts/' . $data['scriptTabledit'] . '" defer></script>';
     } ?>
 </body>
 </html>

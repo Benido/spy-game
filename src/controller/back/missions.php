@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../model/entities/Mission.php');
-require_once ('../../model/CRUD.php');
+require_once('../../model/repositories/MissionRepo.php');
 
 session_start();
 
@@ -9,17 +9,10 @@ if(!isset($_SESSION["username"])) {
     header("Location: ../front/login.php");
     exit();
 }
-$db = new CRUD();
+$repo = new MissionRepo();
 
-$table = $db->read('SELECT * FROM mission');
-foreach ($table as $i => $mission) {
-    $table[$i] = new Mission(...$mission);
-}
-
-$properties = Mission::iterateProperties();
-$tableName = "mission";
-$title = 'Missions';
-$script = 'missionsEditable.js';
+$table = $repo->readMissions();
+$data = $repo->getTableData();
 
 
 require_once('../../templates/back/panel.php');

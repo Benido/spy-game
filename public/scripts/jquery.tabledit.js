@@ -127,7 +127,7 @@ if (typeof jQuery === 'undefined') {
                                 var input = '<select class="tabledit-input ' + settings.inputClass + '" name="' + settings.columns.editable[i][1] + '" style="display: none;" disabled>';
 
                                 // Create options for select element.
-                                $.each(jQuery.parseJSON(settings.columns.editable[i][2]), function(index, value) {
+                                $.each(JSON.parse(settings.columns.editable[i][2]), function(index, value) {
                                     if (text === value) {
                                         input += '<option value="' + index + '" selected>' + value + '</option>';
                                     } else {

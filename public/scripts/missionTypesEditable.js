@@ -1,5 +1,6 @@
 $(function(){
     $('#mission_type').Tabledit({
+        eventType: 'dblclick',
         deleteButton: false,
         editButton: false,
         columns: {

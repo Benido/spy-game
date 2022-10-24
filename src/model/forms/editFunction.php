@@ -4,8 +4,6 @@ function edit (string $table) {
 
     include_once('../../model/CRUD.php');
 
-    session_start();
-
     $input = filter_input_array(INPUT_POST);
 
     if ($input['action'] == 'edit') {
@@ -21,7 +19,6 @@ function edit (string $table) {
             echo var_dump($db->error );
             echo '<br>';
             echo var_dump($update_field);
-            $_SESSION['error'] = $db->error;
         }
     }
 }

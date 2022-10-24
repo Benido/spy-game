@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../model/entities/Country.php');
-require_once ('../../model/CRUD.php');
+require_once ('../../model/repositories/CountryRepo.php');
 
 session_start();
 
@@ -9,17 +9,9 @@ if(!isset($_SESSION["username"])) {
     header("Location: ../front/login.php");
     exit();
 }
-$db = new CRUD();
+$repo = new CountryRepo();
 
-$table = $db->read('SELECT * FROM country');
-foreach ($table as $i => $country) {
-    $table[$i] = new Country(...$country);
-}
-
-$properties = Country::iterateProperties();
-$tableName = 'country';
-$title = 'Pays';
-$script = 'countriesEditable.js';
-
+$table = $repo->readCountries();
+$data = $repo->getTableData();
 
 require_once('../../templates/back/panel.php');

@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../model/entities/Person.php');
-require_once ('../../model/CRUD.php');
+require_once('../../model/repositories/PersonRepo.php');
 
 session_start();
 
@@ -9,17 +9,10 @@ if(!isset($_SESSION["username"])) {
     header("Location: ../front/login.php");
     exit();
 }
-$db = new CRUD();
+$repo = new PersonRepo();
 
-$table = $db->read('SELECT * FROM person');
-foreach ($table as $i => $person) {
-    $table[$i] = new Person(...$person);
-}
-
-$properties = Person::iterateProperties();
-$tableName = "person";
-$title = 'Personnes';
-$script = 'personsEditable.js';
+$table = $repo->readPersons();
+$data = $repo->getTableData();
 
 
 require_once('../../templates/back/panel.php');
