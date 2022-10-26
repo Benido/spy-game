@@ -1,7 +1,6 @@
 $(function(){
     $('#agent').Tabledit({
         eventType: 'dblclick',
-        deleteButton: false,
         editButton: false,
         columns: {
             identifier: [0, 'id_agent'],
@@ -11,6 +10,6 @@ $(function(){
             ]
         },
         hideIdentifier: false,
-        url: '../../model/forms/agentsEdit.php'
+        url: '../../controller/back/agents.php'
     });
 });

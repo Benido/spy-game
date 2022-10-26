@@ -1,10 +1,10 @@
 <?php
-require_once ('../../model/iterateTrait.php');
+require_once('../../model/IterateTrait.php');
 require_once 'Nationality.php';
 
 class Person
 {
-    use iterateTrait;
+    use IterateTrait;
 
     private int $id_person;
     private int $identification_code;

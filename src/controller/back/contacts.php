@@ -11,6 +11,11 @@ if(!isset($_SESSION["username"])) {
 }
 $repo = new ContactRepo();
 
+//If called by the edit script, controller asks the model to treat updates
+if (!empty($_POST)) {
+    $repo->editCell('contact');};
+
+//We get the table content and data(columns, title, edit script) and make it available to the view
 $table = $repo->readContacts();
 $data = $repo->getTableData();
 

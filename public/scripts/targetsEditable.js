@@ -1,7 +1,6 @@
 $(function(){
-    $('#taret').Tabledit({
+    $('#target').Tabledit({
         eventType: 'dblclick',
-        deleteButton: false,
         editButton: false,
         columns: {
             identifier: [0, 'id_target'],
@@ -10,6 +9,6 @@ $(function(){
             ]
         },
         hideIdentifier: false,
-        url: '../../model/forms/targetsEdit.php'
+        url: '../../controller/back/targets.php'
     });
 });

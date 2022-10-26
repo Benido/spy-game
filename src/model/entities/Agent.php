@@ -4,7 +4,7 @@ require_once 'Person.php';
 
 class Agent
 {
-    use iterateTrait;
+    use IterateTrait;
 
     private int $id_agent;
 

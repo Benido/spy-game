@@ -1,10 +1,10 @@
 <?php
-require_once ('../../model/iterateTrait.php');
+require_once('../../model/IterateTrait.php');
 require_once 'Person.php';
 
 class Contact
 {
-    use iterateTrait;
+    use IterateTrait;
 
     private int $id_contact;
     private int $person;

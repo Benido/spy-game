@@ -33,12 +33,4 @@ class MissionRepo extends CRUD
         }
         return $table;
     }
-
-  /*  public function update ($id, $column, $value): void
-    {
-        $sql = 'UPDATE mission
-        SET :column = :value
-        WHERE id_mission = :id'
-    }
-*/
 }

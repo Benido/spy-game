@@ -1,7 +1,6 @@
 $(function(){
     $('#nationality').Tabledit({
         eventType: 'dblclick',
-        deleteButton: false,
         editButton: false,
         columns: {
             identifier: [0, 'id_nationality'],
@@ -11,6 +10,6 @@ $(function(){
             ]
         },
         hideIdentifier: false,
-        url: '../../model/forms/nationalitiesEdit.php'
+        url: '../../controller/back/nationalities.php'
     });
 });

@@ -1,7 +1,6 @@
 $(function(){
     $('#country').Tabledit({
         eventType: 'dblclick',
-        deleteButton: false,
         editButton: false,
         columns: {
             identifier: [0, 'id_country'],
@@ -10,6 +9,6 @@ $(function(){
             ]
         },
         hideIdentifier: false,
-        url: '../../model/forms/countriesEdit.php'
+        url: '../../controller/back/countries.php'
     });
 });

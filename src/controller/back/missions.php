@@ -11,6 +11,11 @@ if(!isset($_SESSION["username"])) {
 }
 $repo = new MissionRepo();
 
+//If called by the edit script, controller asks the model to treat updates
+if (!empty($_POST)) {
+    $repo->editCell('missions');};
+
+//We get the table content and data(columns, title, edit script) and make it available to the view
 $table = $repo->readMissions();
 $data = $repo->getTableData();
 

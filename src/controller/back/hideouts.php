@@ -11,9 +11,12 @@ if(!isset($_SESSION["username"])) {
 }
 $repo = new HideoutRepo();
 
-$table = $repo->readHideouts();
+//If called by the edit script, controller asks the model to treat updates
+if (!empty($_POST)) {
+    $repo->editCell('hideout');};
 
-//We prepare the data used in the view
+//We get the table content and data(columns, title, edit script) and make it available to the view
+$table = $repo->readHideouts();
 $data = $repo->getTableData();
 
 require_once('../../templates/back/panel.php');

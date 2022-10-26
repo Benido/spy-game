@@ -1,6 +1,4 @@
 <article>
-
-    <div>
         <h2><?php echo $data['tableTitle'] ?></h2>
         <table class='table' id=<?php echo $data['tableName'] ?>>
             <tr>
@@ -21,5 +19,8 @@
                 </tr>
             <?php endforeach; ?>
         </table>
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertModal">Nouvelle entrée</button>
     </div>
+    <?php require_once ('../../templates/back/insertModal.php') ?>
 </article>

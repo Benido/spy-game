@@ -1,7 +1,6 @@
 $(function(){
     $('#person').Tabledit({
         eventType: 'dblclick',
-        deleteButton: false,
         editButton: false,
         columns: {
             identifier: [0, 'id_person'],
@@ -14,6 +13,6 @@ $(function(){
             ]
         },
         hideIdentifier: false,
-        url: '../../model/forms/personsEdit.php'
+        url: '../../controller/back/persons.php'
     });
 });

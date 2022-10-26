@@ -1,7 +1,6 @@
 $(function(){
     $('#mission').Tabledit({
         eventType: 'dblclick',
-        deleteButton: false,
         editButton: false,
         columns: {
             identifier: [0, 'id_mission'],
@@ -20,6 +19,6 @@ $(function(){
             ]
         },
         hideIdentifier: false,
-        url: '../../model/forms/missionsEdit.php'
+        url: '../../controller/back/missions.php'
     });
 });

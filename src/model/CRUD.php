@@ -19,8 +19,15 @@ class CRUD
         }
     }
 
-    public function create () {
-
+    public function create ($sql) {
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+            return false;
+        }
     }
 
     public function read ($sql) {
@@ -42,9 +49,22 @@ class CRUD
                     WHERE $col_id = $id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
-
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
+            echo $this->error;
+        }
+
+    }
+
+    public function delete (string $table, int $id) {
+        $sql = "DELETE FROM $table WHERE id_$table = $id";
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+            return false;
         }
 
     }

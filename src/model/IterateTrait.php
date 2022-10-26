@@ -1,6 +1,6 @@
 <?php
 
-trait iterateTrait {
+trait IterateTrait {
     /**
      * @return array
      */

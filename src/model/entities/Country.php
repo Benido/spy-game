@@ -1,10 +1,10 @@
 <?php
 
-require_once ('../../model/iterateTrait.php');
+require_once('../../model/IterateTrait.php');
 
 class Country
 {
-    use iterateTrait;
+    use IterateTrait;
 
     private int $id_country;
     private string $name;

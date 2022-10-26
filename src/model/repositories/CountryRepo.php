@@ -2,9 +2,12 @@
 
 require_once ('../../model/CRUD.php');
 require_once ('../../model/entities/Country.php');
+require_once ('../../model/EditCell.php');
 
 class CountryRepo extends CRUD
 {
+    use EditCell;
+
     private string $tableName = 'country';
     private string $tableTitle = 'Pays';
     private string $scriptTabledit = 'countriesEditable.js';
@@ -15,7 +18,8 @@ class CountryRepo extends CRUD
     }
 
 
-    public function getTableData() {
+    public function getTableData(): array
+    {
         return $data = [
             'tableName' => $this->tableName,
             'tableTitle' => $this->tableTitle,
@@ -34,12 +38,23 @@ class CountryRepo extends CRUD
             return $table;
     }
 
+    public function editMissionCell () {
+        $this->editCell('mission');
+    }
 
-   /* public function update ($id, $column, $value): void
-    {
-        $sql = 'UPDATE country
-        SET :column = :value
-        WHERE id_mission = :id';
-    }*/
+    public function insertCountry ($array) {
+        $sql = "";
+        unset($array['action']);
+        foreach ($array as $column => $value) {
+            $sql .= "INSERT INTO country ($column) VALUES ('$value') ";
+        }
+        return $this->create($sql);
+
+    }
+
+    public function deleteRow ($id) {
+
+        return $this->delete($this->tableName, reset($id));
+    }
 
 }

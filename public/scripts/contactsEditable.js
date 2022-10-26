@@ -1,7 +1,6 @@
 $(function(){
     $('#contact').Tabledit({
         eventType: 'dblclick',
-        deleteButton: false,
         editButton: false,
         columns: {
             identifier: [0, 'id_contact'],
@@ -10,6 +9,6 @@ $(function(){
             ]
         },
         hideIdentifier: false,
-        url: '../../model/forms/contactsEdit.php'
+        url: '../../controller/back/contacts.php'
     });
 });

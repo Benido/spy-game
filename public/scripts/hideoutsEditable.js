@@ -1,7 +1,6 @@
 $(function(){
     $('#hideout').Tabledit({
         eventType: 'dblclick',
-        autoFocus: true,
         editButton: false,
         columns: {
             identifier: [0, 'id_hideout'],
@@ -12,6 +11,6 @@ $(function(){
             ]
         },
         hideIdentifier: false,
-        url: '../../model/forms/hideoutsEdit.php'
+        url: '../../controller/back/hideouts.php'
     });
 });

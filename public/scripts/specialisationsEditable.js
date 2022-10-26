@@ -1,7 +1,6 @@
 $(function(){
-    $('#specialisations').Tabledit({
+    $('#specialisation').Tabledit({
         eventType: 'dblclick',
-        deleteButton: false,
         editButton: false,
         columns: {
             identifier: [0, 'id_specialisation'],
@@ -11,6 +10,6 @@ $(function(){
             ]
         },
         hideIdentifier: false,
-        url: '../../model/forms/specialisationsEdit.php'
+        url: '../../controller/back/specialisations.php'
     });
 });

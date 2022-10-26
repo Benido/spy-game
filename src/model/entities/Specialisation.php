@@ -1,9 +1,9 @@
 <?php
-require_once ('../../model/iterateTrait.php');
+require_once('../../model/IterateTrait.php');
 
 class Specialisation
 {
-    use iterateTrait;
+    use IterateTrait;
 
     private int $id_specialisation;
     private string $title;
