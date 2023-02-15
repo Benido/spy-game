@@ -11,6 +11,7 @@ class CountryRepo extends CRUD
     private string $tableName = 'country';
     private string $tableTitle = 'Pays';
     private string $scriptTabledit = 'countriesEditable.js';
+    private array $maxInputLength = [ 'name' => 50 ];
 
     public function __construct()
     {
@@ -24,13 +25,15 @@ class CountryRepo extends CRUD
             'tableName' => $this->tableName,
             'tableTitle' => $this->tableTitle,
             'tableProperties' => Country::iterateProperties(),
-            'scriptTabledit' => $this->scriptTabledit
-        ];;
+            'scriptTabledit' => $this->scriptTabledit,
+            'maxInputLength' => $this->maxInputLength
+        ];
     }
 
-    public function readCountries () {
+    public function readCountries (): array
+    {
         $table = parent::read(
-            'SELECT * FROM country'
+            'SELECT * FROM spy_database.country'
         );
         foreach ($table as $i => $country) {
             $table[$i] = new Country(...$country);
@@ -38,18 +41,27 @@ class CountryRepo extends CRUD
             return $table;
     }
 
+    public function getCountries(): array
+    {
+        $countries = $this->readCountries();
+        $countriesOptions = [];
+        foreach ($countries as $country) {
+            $countriesOptions[$country->getId()] = $country->getName();
+        }
+            return $countriesOptions;
+    }
+
     public function editMissionCell () {
         $this->editCell('mission');
     }
 
     public function insertCountry ($array) {
-        $sql = "";
         unset($array['action']);
         foreach ($array as $column => $value) {
-            $sql .= "INSERT INTO country ($column) VALUES ('$value') ";
+            $columns[] = $column;
+            $values[] = $value;
         }
-        return $this->create($sql);
-
+        return $this->create($this->tableName, $columns, $values);
     }
 
     public function deleteRow ($id) {

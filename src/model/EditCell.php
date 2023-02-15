@@ -14,10 +14,11 @@ trait EditCell
                 $update_field = [$column, trim($value)];
             }
             if ($update_field && $input['id_' . $table]) {
-
-                $db = parent::update($table, $update_field[0], $update_field[1], 'id_' . $table, (int)($input['id_' . $table]));
-                echo var_dump($db->error) ?? '';
-                echo '<br>';
+                try {
+                parent::update($table, $update_field[0], $update_field[1], 'id_' . $table, (int)($input['id_' . $table]));
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                }
                 echo var_dump($update_field) ?? '';
             }
         }

@@ -16,21 +16,16 @@ try {
     if (!empty($_POST)) {
         if (array_key_exists('action', $_POST) && $_POST['action'] === "edit") {
             $repo->editCell('country');
+            exit();
         } elseif (array_key_exists('action', $_POST) && $_POST['action'] === "delete") {
             $repo->deleteRow($_POST);
             echo $repo->error;
-            //Refresh the page
-            header('Location: ../../controller/back/countries.php');
+            exit();
         } elseif (array_key_exists('action', $_POST) && $_POST['action'] === "insert") {
             $repo->insertCountry($_POST) ;
             echo $repo->error;
-            header('Location: ../../controller/back/countries.php');
         }
-        echo '<br>';
-        echo var_dump($_POST);
-        $_POST = null;
-    } else echo 'pas de POST';
-
+    }
 } catch (Exception $e) {
     echo $e->getMessage();
 }

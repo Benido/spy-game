@@ -64,7 +64,7 @@ if (typeof jQuery === 'undefined') {
                     action: 'restore'
                 },
                 confirm: {
-                    class: 'btn btn-sm btn-danger mx-1',
+                    class: 'btn btn-sm btn-danger',
                     html: 'Confirm'
                 }
             },
@@ -277,7 +277,6 @@ if (typeof jQuery === 'undefined') {
                 var ajaxResult = ajax(settings.buttons.edit.action);
 
                 if (ajaxResult === false) {
-                    //alert('ça marche pas !!!')
                     return;
                 }
 
@@ -329,9 +328,10 @@ if (typeof jQuery === 'undefined') {
                 // Hide table row.
                 $(td).parent('tr').addClass(settings.mutedClass).find('.tabledit-toolbar button:not(.tabledit-restore-button)').attr('disabled', true);
                 // Show restore button.
-                $(td).find('.tabledit-restore-button').show();
+                $(td).find('button .tabledit-restore-button').css('display', 'block');
                 // Set last deleted row.
                 $lastDeletedRow = $(td).parent('tr');
+                $(td).parent('tr').remove();
             },
             confirm: function(td) {
                 // Reset all cells in edit mode.
@@ -385,7 +385,7 @@ if (typeof jQuery === 'undefined') {
                 if (action === settings.buttons.edit.action) {
                     $lastEditedRow.removeClass(settings.dangerClass).addClass(settings.warningClass);
                     setTimeout(function() {
-                        //$lastEditedRow.removeClass(settings.warningClass);
+                        $lastEditedRow.removeClass(settings.warningClass);
                         $table.find('tr.' + settings.warningClass).removeClass(settings.warningClass);
                     }, 1400);
                 }

@@ -19,10 +19,12 @@ class CRUD
         }
     }
 
-    public function create ($sql) {
+    public function create (string $tableName, array $columns, array $values ) {
+        $placeholders = array_map(fn($column): string => $value = '?',$columns);
         try {
+            $sql = 'INSERT INTO ' . $tableName . '( ' . implode(", ", $columns) . ') VALUES ('. implode(',', $placeholders).')';
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
+            $stmt->execute($values);
             return true;
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
@@ -41,17 +43,29 @@ class CRUD
         }
     }
 
+    public function readColumns ($sql) {
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+            return false;
+        }
+    }
+
     public function update ($table, $column, $value, $col_id, $id): void
     {
         try {
             $sql = "UPDATE $table 
-                    SET $column = '$value'
-                    WHERE $col_id = $id";
+                    SET $column = ?
+                    WHERE $col_id = ?";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
+            $stmt->execute([$value, $id]);
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
-            echo $this->error;
+            echo '<br>'. $this->error;
+            throw new Exception ('Erreur dans CRUD - update');
         }
 
     }

@@ -23,9 +23,7 @@
                    '<li>
                         <a href="/spy-game/src/controller/back/missions.php">Tableau de bord</a>
                     </li>'
-                    :
-                     null
-                   ?>
+                    : null ?>
                 </ul>
             </nav>
         </section>

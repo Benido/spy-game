@@ -20,6 +20,14 @@ class Country
     }
 
     /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id_country;
+    }
+
+    /**
      * @return string
      */
     public function getName(): string

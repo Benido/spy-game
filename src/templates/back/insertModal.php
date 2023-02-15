@@ -6,13 +6,27 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="/spy-game/src/controller/back/countries.php" method="post" id= <?php echo $data['tableName'].'_form' ?>>
+        <form id= <?php echo $data['tableName'].'_form' ?>>
             <?php foreach(array_slice($data['tableProperties'], 1) as $column): ?>
                 <div class="mb-3">
                     <label for=<?php echo $column ?> class="col-form-label"><?php echo $column ?>:</label>
-                    <input type="text" class="form-control" id=<?php echo $column ?> name=<?php echo $column ?>>
+                    <?php if (key_exists('multipleChoiceInput', $data) && key_exists($column, $data['multipleChoiceInput']))  {?>
+                    <select id= <?php echo $column ?>
+                            name= <?php echo $column ?>
+                           class="form-control" >
+                            <?php foreach ($data['multipleChoiceInput'][$column] as $id => $option):  ?>
+                                <option value="<?php echo $id ?>"> <?php echo $option ?> </option>
+                            <?php endforeach; ?>
+                    </select>
+                            <?php } else { ?>
+                    <input type="text"
+                           class="form-control"
+                           maxlength=<?php echo $data['maxInputLength'][$column] ?>
+                           id=<?php echo $column ?>
+                           name=<?php echo $column ?> >
                 </div>
-            <?php endforeach; ?>
+            <?php }
+            endforeach; ?>
             <input type="hidden" id="action" name="action" value="insert">
         </form>
       </div>
