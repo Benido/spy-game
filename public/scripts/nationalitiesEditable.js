@@ -16,7 +16,6 @@ $(function edit(){
     $('#nationality_form').on('submit', function (event){
         event.preventDefault();
         let formData = $(this).serialize();
-        alert(formData);
         let posting = $.post( '../../controller/back/nationalities.php', formData);
         posting.done(function(data) {
             let newData =$(data).find('#nationality').html()

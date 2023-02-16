@@ -61,8 +61,8 @@ class NationalityRepo extends CRUD
         return $table;
     }
 
-    public function insertNationality ($array) {
-
+    public function insertNationality ($array): bool
+    {
         unset($array['action']);
         foreach ($array as $column => $value) {
             $columns[] = $column;
@@ -72,8 +72,8 @@ class NationalityRepo extends CRUD
 
     }
 
-    public function deleteRow ($id) {
-
+    public function deleteRow ($id): bool
+    {
         return $this->delete($this->tableName, reset($id));
     }
 

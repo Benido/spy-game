@@ -1,5 +1,7 @@
 use spy_database;
 
+insert into user (username, password) values ('admin', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08');
+
 insert into country (id_country, name) values (1, 'France');
 insert into country (id_country, name) values (2, 'Angleterre');
 insert into country (id_country, name) values (3, 'Espagne');
@@ -36,6 +38,6 @@ insert into mission_type (id_mission_type, title, description) values (1, 'eu', 
 insert into mission_type (id_mission_type, title, description) values (2, 'nunc', 'congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed');
 insert into mission_type (id_mission_type, title, description) values (3, 'nulla', 'ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie');
 
-insert into mission (id_mission, agent, target, contact, code_name, mission_type, status, country, hideout, specialisation, start_date, end_date) values (1, 1, 1, 1, 'nunc commodo', 'porta',2, 3, 3, 1,'2023-07-17', '2022-12-12');
-insert into mission (id_mission, agent, target, contact, code_name, mission_type, status, country, hideout, specialisation, start_date, end_date) values (2, 2, 2, 2, 'corbeau chatoyant', 'porta',1, 3, 3, 2,'2023-07-17', '2022-12-12');
+insert into mission (id_mission, agent, target, contact, mission_type, code_name, status, country, hideout, specialisation, start_date, end_date) values (1, 1, 1, 1, 2, 'nunc commodo', 'porta', 3, 3, 1,'2023-07-17', '2022-12-12');
+insert into mission (id_mission, agent, target, contact, mission_type, code_name, status, country, hideout, specialisation, start_date, end_date) values (2, 2, 2, 2, 1, 'corbeau chatoyant', 'porta', 3, 3, 2,'2023-07-17', '2022-12-12');
 

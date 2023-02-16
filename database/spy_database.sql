@@ -5,6 +5,13 @@ CREATE DATABASE spy_database CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 #-------------------------Tables Creation---------------------------------------
 use spy_database;
 
+CREATE TABLE user
+(
+    id_user INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR (50) NOT NULL,
+    password  VARCHAR (100) NOT NULL
+) ENGINE = innoDB;
+
 CREATE TABLE country
 (
     id_country INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -22,7 +29,7 @@ CREATE TABLE nationality
 
 CREATE TABLE person
 (
-    id_person INT UNSIGNED  AUTO_INCREMENT PRIMARY KEY,
+    id_person INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     identification_code INT UNSIGNED NOT NULL,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
@@ -100,8 +107,8 @@ CREATE TABLE mission
     agent INT UNSIGNED NOT NULL,
     target INT UNSIGNED NOT NULL,
     contact INT UNSIGNED NOT NULL,
-    code_name VARCHAR(50) NOT NULL,
     mission_type INT UNSIGNED NOT NULL,
+    code_name VARCHAR(50) NOT NULL,
     status VARCHAR(50) NOT NULL,
     country INT UNSIGNED NOT NULL,
     hideout INT UNSIGNED,
@@ -218,3 +225,6 @@ CREATE OR REPLACE USER spy_admin IDENTIFIED BY 'temporaryPassword';
 GRANT admin to spy_admin;
 
 FLUSH PRIVILEGES;
+
+
+

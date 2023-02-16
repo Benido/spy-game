@@ -22,7 +22,7 @@ class CRUD
     public function create (string $tableName, array $columns, array $values ) {
         $placeholders = array_map(fn($column): string => $value = '?',$columns);
         try {
-            $sql = 'INSERT INTO ' . $tableName . '( ' . implode(", ", $columns) . ') VALUES ('. implode(',', $placeholders).')';
+            $sql = 'INSERT INTO ' . $tableName . ' ( ' . implode(", ", $columns) . ') VALUES ('. implode(',', $placeholders).')';
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($values);
             return true;
