@@ -19,7 +19,9 @@ class CRUD
         }
     }
 
-    public function create (string $tableName, array $columns, array $values ) {
+
+ /*   public function create (string $tableName, array $columns, array $values ): bool
+    {
         $placeholders = array_map(fn($column): string => $value = '?',$columns);
         try {
             $sql = 'INSERT INTO ' . $tableName . ' ( ' . implode(", ", $columns) . ') VALUES ('. implode(',', $placeholders).')';
@@ -28,8 +30,19 @@ class CRUD
             return true;
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
+            throw $e;
             return false;
         }
+    }
+*/
+
+    public function create (string $tableName, array $columns, array $values ): bool
+    {
+        $placeholders = array_map(fn($column): string => $value = '?',$columns);
+
+            $sql = 'INSERT INTO ' . $tableName . ' ( ' . implode(", ", $columns) . ') VALUES ('. implode(',', $placeholders).')';
+            $stmt = $this->pdo->prepare($sql);
+            return $stmt->execute($values);
     }
 
     public function read ($sql) {
@@ -37,6 +50,19 @@ class CRUD
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+            return false;
+        }
+    }
+
+    public function findById(int $id, string $tableName)
+    {
+        try {
+            $sql = 'SELECT * FROM '. $tableName . ' WHERE id_'. $tableName. ' =  ?';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$id]);
+            return $stmt->fetch();
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
             return false;

@@ -6,11 +6,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <div id="formErrorMessage" class="text-danger" tabindex="0"><?= $errorMessage ?></div>
         <form id= <?php echo $data['tableName'].'_form' ?>>
             <?php foreach(array_slice($data['tableProperties'], 1) as $column): ?>
                 <div class="mb-3">
                     <label for=<?php echo $column ?> class="col-form-label"><?php echo $column ?>:</label>
-                    <?php if (key_exists('multipleChoiceInput', $data) && key_exists($column, $data['multipleChoiceInput']))  {?>
+                    <?php if (key_exists('multipleChoiceInput', $data) && key_exists($column, $data['multipleChoiceInput']))  { ?>
                     <select id= <?php echo $column ?>
                             name= <?php echo $column ?>
                            class="form-control" >
@@ -19,11 +20,16 @@
                             <?php endforeach; ?>
                     </select>
                             <?php } else { ?>
-                    <input type="text"
+                    <input id=<?php echo $column ?>
+                           name=<?php echo $column ?>
                            class="form-control"
-                           maxlength=<?php echo $data['maxInputLength'][$column] ?>
-                           id=<?php echo $column ?>
-                           name=<?php echo $column ?> >
+                           <?php if (key_exists('date', $data) && in_array($column, $data['date'])) {
+                               echo "type='date'";
+                           } else if (key_exists('number', $data)&& key_exists($column, $data['number'])) {
+                               echo "type='number' min=1 max=". $data['number'][$column];
+                           } else if (key_exists('text', $data)&& key_exists($column, $data['text'])) {
+                               echo "type='text' maxlength=". $data['text'][$column];
+                           } ?>  >
                 </div>
             <?php }
             endforeach; ?>

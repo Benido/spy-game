@@ -30,4 +30,35 @@ class Person
         $this->birth_date = $birth_date;
         $this->nationality = $nationality;
     }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id_person;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName(): string
+    {
+        return $this->first_name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName(): string
+    {
+        return $this->last_name;
+    }
+
+    public function getFullName(): string
+    {
+        return $this->getFirstName(). ' ' . $this->getLastName();
+    }
+
+
 }

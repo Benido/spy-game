@@ -198,7 +198,7 @@ CREATE TRIGGER IF NOT EXISTS target_nationality_check
                 SIGNAL SQLSTATE '45000' SET
                     MYSQL_ERRNO = 30001,
                     MESSAGE_TEXT = 'La cible ne peut pas être de la même nationalité que l\'agent';
-            ELSEIF target_nationality = country_nationality THEN
+            ELSEIF contact_nationality != country_nationality THEN
                  SIGNAL SQLSTATE '45000' SET
                      MYSQL_ERRNO = 30002,
                      MESSAGE_TEXT = 'Le contact doit être de la même nationalité que le pays de la mission';

@@ -32,7 +32,7 @@ class Agent
     /**
      * @return int
      */
-    public function getIdAgent(): int
+    public function getId(): int
     {
         return $this->id_agent;
     }
@@ -76,6 +76,5 @@ class Agent
     {
         $this->person = $person;
     }
-
 
 }

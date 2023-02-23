@@ -1,5 +1,10 @@
-$(function(){
-    $('#mission').Tabledit({
+//Apply the Tabledit function to the table
+$(function edit(){
+    
+    const missionForm = $('#mission_form');
+    const missionTableSelector = 'mission'
+    
+    $('#' + missionTableSelector).Tabledit({
         eventType: 'dblclick',
         editButton: false,
         columns: {
@@ -21,4 +26,24 @@ $(function(){
         hideIdentifier: false,
         url: '../../controller/back/missions.php'
     });
+  
+    //Send form data to server and update table with new data
+    missionForm.on('submit', function (event){
+        event.preventDefault();
+        let formData = $(this).serialize();
+        let posting = $.post( '../../controller/back/missions.php', formData);
+        posting.done(function(data) {
+            let errorMessage = $(data).find('#formErrorMessage').text()
+            if (errorMessage === '') {
+                let newData = $(data).find('#' + missionTableSelector).html()
+                missionForm.find('input[type=text]').val('')
+                $('#' + missionTableSelector).html(newData)
+                edit();
+                $('#insertModal').modal('hide');
+            } else {
+                $('#formErrorMessage').text(errorMessage).trigger('focus');
+            }
+        })
+    })
 });
+

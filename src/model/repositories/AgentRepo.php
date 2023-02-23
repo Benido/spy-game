@@ -2,9 +2,14 @@
 
 require_once ('../../model/CRUD.php');
 require_once ('../../model/entities/Agent.php');
+require_once ('../../model/EditCell.php');
+require_once ('../../model/repositories/SpecialisationRepo.php');
+require_once ('../../model/repositories/PersonRepo.php');
 
 class AgentRepo extends CRUD
 {
+    use EditCell;
+
     private string $tableName = 'agent';
     private string $tableTitle = 'Agents';
     private string $scriptTabledit = 'agentsEditable.js';
@@ -20,20 +25,64 @@ class AgentRepo extends CRUD
         return $data = [
             'tableName' => $this->tableName,
             'tableTitle' => $this->tableTitle,
+            'scriptTabledit' => $this->scriptTabledit,
             'tableProperties' => Agent::iterateProperties(),
-            'scriptTabledit' => $this->scriptTabledit
-        ];;
+            'multipleChoiceInput' => ['specialisation' => $this->getSpecialisationOptions(), 'person' => $this->getPersonsOptions()],
+        ];
     }
 
+    public function getSpecialisationOptions(): array
+    {
+        //Build an associative array with the id and name of specialisations
+        $specialisationRepo = new SpecialisationRepo();
+        return $specialisationRepo->getFormatedSpecialisations();
+    }
+
+    public function getPersonsOptions(): array
+    {
+        $personRepo = new PersonRepo();
+        return $personRepo->getFormatedAvailablePersons();
+    }
+    
     public function readAgents()
     {
         $table = parent::read(
-            'SELECT * FROM agent'
+            'SELECT * FROM spy_database.agent'
         );
         foreach ($table as $i => $agent) {
             $table[$i] = new Agent(...$agent);
         }
         return $table;
+    }
+
+    public function formatsAgents(): array
+    {
+        $agents = $this->readAgents();
+        $formatedAgents = [];
+        foreach ($agents as $agent) {
+            $idAgent = $agent->getId();
+            $idPerson = $agent->getPerson();
+            $personRepo = new PersonRepo();
+            $agentFullName = $personRepo->formatsPerson($idPerson);
+            $formatedAgents[$idAgent] = $agentFullName;
+        }
+        return $formatedAgents;
+    }
+
+    public function insertAgent ($array): bool
+    {
+        unset($array['action']);
+        foreach ($array as $column => $value) {
+            $columns[] = $column;
+            $values[] = $value;
+        }
+        return $this->create($this->tableName, $columns, $values );
+
+    }
+
+    public function deleteRow ($id): bool
+    {
+        return $this->delete($this->tableName, reset($id));
     }
 
 }

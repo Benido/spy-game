@@ -1,8 +1,8 @@
+//Apply the Tabledit function to the table
 $(function edit(){
     $('#country').Tabledit({
         eventType: 'dblclick',
         editButton: false,
-        restoreButton: false,
         columns: {
             identifier: [0, 'id_country'],
             editable: [
@@ -13,6 +13,7 @@ $(function edit(){
         url: '../../controller/back/countries.php'
     });
 
+    //Send form data to server and update table with new data
     $('#country_form').on('submit', function (event){
         event.preventDefault();
         let formData = $(this).serialize();

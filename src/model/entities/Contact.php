@@ -23,7 +23,7 @@ class Contact
     /**
      * @return int
      */
-    public function getIdContact(): int
+    public function getId(): int
     {
         return $this->id_contact;
     }

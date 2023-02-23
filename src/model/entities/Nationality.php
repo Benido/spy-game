@@ -22,6 +22,15 @@ class Nationality
     }
 
     /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id_nationality;
+    }
+
+
+    /**
      * @return string
      */
     public function getName(): string

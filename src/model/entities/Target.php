@@ -22,6 +22,14 @@ class Target
     /**
      * @return int
      */
+    public function getId(): int
+    {
+        return $this->id_target;
+    }
+
+    /**
+     * @return int
+     */
     public function getPerson(): int
     {
         return $this->person;

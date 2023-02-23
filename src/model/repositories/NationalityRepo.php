@@ -28,8 +28,8 @@ class NationalityRepo extends CRUD
             'tableTitle' => $this->tableTitle,
             'scriptTabledit' => $this->scriptTabledit,
             'tableProperties' => Nationality::iterateProperties(),
-            'maxInputLength' => $this->maxInputLength,
-            'multipleChoiceInput' => ['country' => $this->getCountriesOptions()]
+            'multipleChoiceInput' => ['country' => $this->getCountriesOptions()],
+            'text' => $this->maxInputLength,
         ];
     }
 
@@ -37,7 +37,7 @@ class NationalityRepo extends CRUD
     {
         //Build an associative array with the id and name of countries that are not yet associated with a nationality
         $countryRepo = new CountryRepo();
-        $countries = $countryRepo->getCountries();
+        $countries = $countryRepo->formatsCountries();
         $countriesWithNationality = parent::readColumns(
             "SELECT country FROM spy_database.nationality"
         );
@@ -59,6 +59,16 @@ class NationalityRepo extends CRUD
             $table[$i] = new Nationality(...$nationality);
         }
         return $table;
+    }
+
+    public function getFormatedNationalities(): array
+    {
+        $nationalities = $this->readNationalities();
+        $nationalitiesOptions = [];
+        foreach ($nationalities as $nationality) {
+            $nationalitiesOptions[$nationality->getId()] = $nationality->getName();
+        }
+        return $nationalitiesOptions;
     }
 
     public function insertNationality ($array): bool

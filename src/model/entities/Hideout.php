@@ -27,7 +27,7 @@ class Hideout
     /**
      * @return int
      */
-    public function getIdHideout(): int
+    public function getId(): int
     {
         return $this->id_hideout;
     }

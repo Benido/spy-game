@@ -22,6 +22,14 @@ class Specialisation
     }
 
     /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id_specialisation;
+    }
+
+    /**
      * @return string
      */
     public function getTitle(): string

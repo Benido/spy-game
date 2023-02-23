@@ -22,6 +22,14 @@ class MissionType
     }
 
     /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id_mission_type;
+    }
+
+    /**
      * @return string
      */
     public function getTitle(): string

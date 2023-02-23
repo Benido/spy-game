@@ -3,9 +3,12 @@
 require_once ('../../model/CRUD.php');
 require_once ('../../model/entities/Hideout.php');
 require_once ('../../model/repositories/CountryRepo.php');
+require_once ('../../model/EditCell.php');
 
 class HideoutRepo extends CRUD
 {
+    use EditCell;
+
     private string $tableName = 'hideout';
     private string $tableTitle = 'Planques';
     private string $scriptTabledit = 'hideoutsEditable.js';
@@ -24,7 +27,7 @@ class HideoutRepo extends CRUD
             'tableTitle' => $this->tableTitle,
             'scriptTabledit' => $this->scriptTabledit,
             'tableProperties' => Hideout::iterateProperties(),
-            'maxInputLength' => $this->maxInputLength,
+            'text' => $this->maxInputLength,
             'multipleChoiceInput' => ['country' => $this->getCountriesOptions()]
         ];
     }
@@ -44,7 +47,17 @@ class HideoutRepo extends CRUD
     {
         $countryRepo = new CountryRepo();
 
-        return $countryRepo->getCountries();;
+        return $countryRepo->formatsCountries();;
+    }
+
+    public function formatsHideouts(): array
+    {
+        $hideouts = $this->readHideouts();
+        $hideoutsOptions = [];
+        foreach ($hideouts as $hideout) {
+            $hideoutsOptions[$hideout->getId()] = $hideout->getType();
+        }
+        return $hideoutsOptions;
     }
 
     public function insertHideout ($array): bool

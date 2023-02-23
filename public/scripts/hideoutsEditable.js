@@ -1,3 +1,4 @@
+//Apply the Tabledit function to the table
 $(function edit(){
     $('#hideout').Tabledit({
         eventType: 'dblclick',
@@ -14,6 +15,7 @@ $(function edit(){
         url: '../../controller/back/hideouts.php'
     });
 
+    //Send form data to server and update table with new data
     $('#hideout_form').on('submit', function (event){
         event.preventDefault();
         let formData = $(this).serialize();

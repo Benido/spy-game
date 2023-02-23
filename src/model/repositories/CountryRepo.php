@@ -26,7 +26,7 @@ class CountryRepo extends CRUD
             'tableTitle' => $this->tableTitle,
             'tableProperties' => Country::iterateProperties(),
             'scriptTabledit' => $this->scriptTabledit,
-            'maxInputLength' => $this->maxInputLength
+            'text' => $this->maxInputLength
         ];
     }
 
@@ -41,7 +41,7 @@ class CountryRepo extends CRUD
             return $table;
     }
 
-    public function getCountries(): array
+    public function formatsCountries(): array
     {
         $countries = $this->readCountries();
         $countriesOptions = [];

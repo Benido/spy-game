@@ -24,7 +24,7 @@ ob_start()
         </div>
     </div>
 </div>
-
+<div id="error"> <?php $error ?></div>
 <?php
 $content = ob_get_clean();
 require_once('../../templates/layout.php');
