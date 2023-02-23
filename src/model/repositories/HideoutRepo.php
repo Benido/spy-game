@@ -32,7 +32,8 @@ class HideoutRepo extends CRUD
         ];
     }
 
-    public function readHideouts(): array
+    //generates an array containing class instances of the Entity
+    public function getHideouts(): array
     {
         $table = parent::read(
             'SELECT * FROM spy_database.hideout'
@@ -43,16 +44,27 @@ class HideoutRepo extends CRUD
         return $table;
     }
 
+    //generates a table of values
+    public function readHideouts(): array
+    {
+        return $table = parent::read(
+            'SELECT id_hideout, address, country.name as country, type 
+                 FROM spy_database.hideout
+                 JOIN spy_database.country
+                 ON hideout.country = country.id_country'
+        );
+    }
+
     public function getCountriesOptions(): array
     {
         $countryRepo = new CountryRepo();
 
-        return $countryRepo->formatsCountries();;
+        return $countryRepo->formatsCountries();
     }
 
     public function formatsHideouts(): array
     {
-        $hideouts = $this->readHideouts();
+        $hideouts = $this->getHideouts();
         $hideoutsOptions = [];
         foreach ($hideouts as $hideout) {
             $hideoutsOptions[$hideout->getId()] = $hideout->getType();

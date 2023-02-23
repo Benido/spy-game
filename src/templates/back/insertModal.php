@@ -24,7 +24,7 @@
                            name=<?php echo $column ?>
                            class="form-control"
                            <?php if (key_exists('date', $data) && in_array($column, $data['date'])) {
-                               echo "type='date'";
+                               echo "type='date' min='1900-01-01'";
                            } else if (key_exists('number', $data)&& key_exists($column, $data['number'])) {
                                echo "type='number' min=1 max=". $data['number'][$column];
                            } else if (key_exists('text', $data)&& key_exists($column, $data['text'])) {

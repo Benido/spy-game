@@ -33,6 +33,38 @@ class NationalityRepo extends CRUD
         ];
     }
 
+    //generates an array containing class instances of the Entity
+    public function getNationalities(): array
+    {
+        $table = parent::read(
+            "SELECT * FROM spy_database.nationality"
+        );
+        foreach ($table as $i => $nationality) {
+            $table[$i] = new Nationality(...$nationality);
+        }
+        return $table;
+    }
+
+    //generates a table of values
+    public function readNationalities(): array
+    {
+        return $table = parent::read(
+            'SELECT id_nationality, nationality.name, country.name as country
+                 FROM spy_database.nationality
+                 JOIN spy_database.country
+                 ON nationality.country = country.id_country');
+    }
+
+    public function getFormatedNationalities(): array
+    {
+        $nationalities = $this->getNationalities();
+        $nationalitiesOptions = [];
+        foreach ($nationalities as $nationality) {
+            $nationalitiesOptions[$nationality->getId()] = $nationality->getName();
+        }
+        return $nationalitiesOptions;
+    }
+
     public function getCountriesOptions(): array
     {
         //Build an associative array with the id and name of countries that are not yet associated with a nationality
@@ -50,26 +82,6 @@ class NationalityRepo extends CRUD
         return $countriesOptions;
     }
 
-    public function readNationalities (): array
-    {
-        $table = parent::read(
-            "SELECT * FROM spy_database.nationality"
-        );
-        foreach ($table as $i => $nationality) {
-            $table[$i] = new Nationality(...$nationality);
-        }
-        return $table;
-    }
-
-    public function getFormatedNationalities(): array
-    {
-        $nationalities = $this->readNationalities();
-        $nationalitiesOptions = [];
-        foreach ($nationalities as $nationality) {
-            $nationalitiesOptions[$nationality->getId()] = $nationality->getName();
-        }
-        return $nationalitiesOptions;
-    }
 
     public function insertNationality ($array): bool
     {

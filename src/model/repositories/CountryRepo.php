@@ -30,20 +30,29 @@ class CountryRepo extends CRUD
         ];
     }
 
+    //generates a table of values
     public function readCountries (): array
     {
-        $table = parent::read(
+        return $table = parent::read(
             'SELECT * FROM spy_database.country'
         );
+    }
+
+    //generates an array containing class instances of the Entity
+    public function getCountries (): array
+    {
+        $table = $this->readCountries();
         foreach ($table as $i => $country) {
             $table[$i] = new Country(...$country);
         }
             return $table;
     }
 
+
+
     public function formatsCountries(): array
     {
-        $countries = $this->readCountries();
+        $countries = $this->getCountries();
         $countriesOptions = [];
         foreach ($countries as $country) {
             $countriesOptions[$country->getId()] = $country->getName();

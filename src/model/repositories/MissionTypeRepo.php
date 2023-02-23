@@ -31,11 +31,18 @@ class MissionTypeRepo extends CRUD
 
     }
 
+    //generates a table of values
     public function readMissionTypes(): array
     {
-        $table = parent::read(
+        return $table = parent::read(
             'SELECT * FROM spy_database.mission_type'
         );
+    }
+
+    //generates an array containing class instances of the Entity
+    public function getMissionTypes(): array
+    {
+        $table = $this->readMissionTypes();
         foreach ($table as $i => $missionType) {
             $table[$i] = new MissionType(...$missionType);
         }
@@ -44,7 +51,7 @@ class MissionTypeRepo extends CRUD
 
     public function formatsMissionTypes(): array
     {
-        $missionTypes = $this->readMissionTypes();
+        $missionTypes = $this->getMissionTypes();
         $missionTypesOptions = [];
         foreach ($missionTypes as $missionType) {
             $missionTypesOptions[$missionType->getId()] = $missionType->getTitle();

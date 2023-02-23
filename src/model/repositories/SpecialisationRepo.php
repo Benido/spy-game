@@ -30,11 +30,18 @@ class SpecialisationRepo extends CRUD
         ];;
     }
 
-    public function readSpecialisations()
+    //generates a table of values
+    public function readSpecialisations(): array
     {
-        $table = parent::read(
+       return $table = parent::read(
             'SELECT * FROM spy_database.specialisation'
         );
+    }
+
+    //generates an array containing class instances of the Entity
+    public function getSpecialisations(): array
+    {
+        $table = $this->readSpecialisations();
         foreach ($table as $i => $specialisation) {
             $table[$i] = new Specialisation(...$specialisation);
         }
@@ -43,7 +50,7 @@ class SpecialisationRepo extends CRUD
 
     public function getFormatedSpecialisations(): array
     {
-        $specialisations = $this->readSpecialisations();
+        $specialisations = $this->getSpecialisations();
         $specialisationsOptions = [];
         foreach ($specialisations as $specialisation) {
             $specialisationsOptions[$specialisation->getId()] = $specialisation->getTitle();

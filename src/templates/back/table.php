@@ -9,11 +9,11 @@
                 endforeach;
                 ?>
             </tr>
-            <?php foreach($table as $item): ?>
+            <?php foreach($table as $line): ?>
                 <tr>
-                    <?php foreach($item->iterateValues() as $value): ?>
+                    <?php foreach($line as $value): ?>
                         <td>
-                            <?php echo($value) ?>
+                            <?= $value ?>
                         </td>
                     <?php endforeach; ?>
                 </tr>

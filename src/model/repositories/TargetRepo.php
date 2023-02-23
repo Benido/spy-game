@@ -29,14 +29,9 @@ class TargetRepo extends CRUD
             'multipleChoiceInput' => ['person' => $this->getPersonsOptions()]
         ];
     }
-
-    public function getPersonsOptions(): array
-    {
-        $personRepo = new PersonRepo();
-        return $personRepo->getFormatedAvailablePersons();
-    }
-
-    public function readTargets()
+       
+    //generates an array containing class instances of the Entity
+    public function getTargets()
     {
         $table = parent::read(
             'SELECT * FROM spy_database.target'
@@ -47,9 +42,19 @@ class TargetRepo extends CRUD
         return $table;
     }
 
+    //generates a table of values
+    public function readTargets(): array
+    {
+        return $table = parent::read(
+            "SELECT id_target, 
+                 CONCAT(person.first_name, ' ', person.last_name) as person
+                 FROM spy_database.target
+                 JOIN spy_database.person on target.person = person.id_person");
+    }
+
     public function formatsTargets(): array
     {
-        $targets = $this->readTargets();
+        $targets = $this->getTargets();
         $formatedTargets = [];
         foreach ($targets as $target) {
             $idTarget = $target->getId();
@@ -76,6 +81,12 @@ class TargetRepo extends CRUD
         return $personRepo->formatsPerson($this->per);
     }
 
+    public function getPersonsOptions(): array
+    {
+        $personRepo = new PersonRepo();
+        return $personRepo->getFormatedAvailablePersons();
+    }
+    
     public function insertTarget ($array): bool
     {
         unset($array['action']);

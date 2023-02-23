@@ -10,6 +10,7 @@ if(!isset($_SESSION["username"])) {
     exit();
 }
 $repo = new PersonRepo();
+$errorMessage = '';
 
 //If called by the edit script, controller asks the model to treat updates
 try {
@@ -23,16 +24,19 @@ try {
             exit();
         } elseif (array_key_exists('action', $_POST) && $_POST['action'] === "insert") {
             $repo->insertPerson($_POST) ;
-            echo $repo->error;
         }
     }
 } catch (Exception $e) {
-    echo $e->getMessage();
+    $errorMessage = $e->getMessage();
+} finally {
+    //We get the table content and data(columns, title, edit script) and make it available to the view
+    $table = $repo->readPersons();
+    $data = $repo->getTableData();
+
+    require_once('../../templates/back/panel.php');
 }
 
-//We get the table content and data(columns, title, edit script) and make it available to the view
-$table = $repo->readPersons();
-$data = $repo->getTableData();
 
 
-require_once('../../templates/back/panel.php');
+
+

@@ -52,7 +52,6 @@ class CRUD
             return $stmt->fetchAll();
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
-            return false;
         }
     }
 

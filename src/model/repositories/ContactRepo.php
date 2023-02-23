@@ -19,6 +19,7 @@ class ContactRepo extends CRUD
     }
 
 
+    //generates an array containing class instances of the Entity
     public function getTableData()
     {
         return $data = [
@@ -30,13 +31,17 @@ class ContactRepo extends CRUD
         ];;
     }
 
-    public function getPersonsOptions(): array
+    //generates a table of values
+    public function readContacts(): array
     {
-        $personRepo = new PersonRepo();
-        return $personRepo->getFormatedAvailablePersons();
+        return $table = parent::read(
+            "SELECT id_contact, 
+                 CONCAT(person.first_name, ' ', person.last_name) as person
+                 FROM spy_database.contact
+                 JOIN spy_database.person on contact.person = person.id_person");
     }
 
-    public function readContacts()
+    public function getContacts(): array
     {
         $table = parent::read(
             'SELECT * FROM spy_database.contact'
@@ -46,10 +51,10 @@ class ContactRepo extends CRUD
         }
         return $table;
     }
-    
+
     public function formatsContacts(): array
     {
-        $contacts = $this->readcontacts();
+        $contacts = $this->getcontacts();
         $formatedContacts = [];
         foreach ($contacts as $contact) {
             $idContact = $contact->getId();
@@ -61,6 +66,11 @@ class ContactRepo extends CRUD
         return $formatedContacts;
     }
 
+    public function getPersonsOptions(): array
+    {
+        $personRepo = new PersonRepo();
+        return $personRepo->getFormatedAvailablePersons();
+    }
 
     public function insertContact ($array): bool
     {

@@ -1,6 +1,10 @@
 //Apply the Tabledit function to the table
 $(function edit (){
-    $('#person').Tabledit({
+
+    const personForm = $('#person_form');
+    const personTableSelector = 'person'
+    
+    $('#' + personTableSelector).Tabledit({
         eventType: 'dblclick',
         editButton: false,
         columns: {
@@ -18,16 +22,21 @@ $(function edit (){
     });
 
     //Send form data to server and update table with new data
-    $('#person_form').on('submit', function (event){
+    $(personForm).on('submit', function (event){
         event.preventDefault();
         let formData = $(this).serialize();
         let posting = $.post( '../../controller/back/persons.php', formData);
         posting.done(function(data) {
-            let newData =$(data).find('#person').html()
-            $('#person_form').find('input[type=text]').val('')
-            $('#person').html(newData)
-            edit();
-            $('#insertModal').modal('hide');
+            let errorMessage = $(data).find('#formErrorMessage').text()
+            if (errorMessage === '') {
+                let newData = $(data).find('#' + personTableSelector).html()
+                personForm.find('input[type=text]').val('')
+                $('#' + personTableSelector).html(newData)
+                edit();
+                $('#insertModal').modal('hide');
+            } else {
+                $('#formErrorMessage').text(errorMessage).trigger('focus');
+            }
         })
     })
 });

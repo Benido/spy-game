@@ -31,6 +31,30 @@ class AgentRepo extends CRUD
         ];
     }
 
+    //generates an array containing class instances of the Entity
+    public function getAgents(): array
+    {
+        $table = parent::read(
+            'SELECT * FROM spy_database.agent'
+        );
+        foreach ($table as $i => $agent) {
+            $table[$i] = new Agent(...$agent);
+        }
+        return $table;
+    }
+
+    //generates a table of values
+    public function readAgents(): array
+    {
+        return $table = parent::read(
+            "SELECT id_agent, 
+                 CONCAT(person.first_name, ' ', person.last_name) as person,
+                 specialisation.title as specialisation
+                 FROM spy_database.agent
+                 JOIN spy_database.person ON agent.person = person.id_person
+                 JOIN spy_database.specialisation ON agent.specialisation = specialisation.id_specialisation");
+    }
+
     public function getSpecialisationOptions(): array
     {
         //Build an associative array with the id and name of specialisations
@@ -43,21 +67,10 @@ class AgentRepo extends CRUD
         $personRepo = new PersonRepo();
         return $personRepo->getFormatedAvailablePersons();
     }
-    
-    public function readAgents()
-    {
-        $table = parent::read(
-            'SELECT * FROM spy_database.agent'
-        );
-        foreach ($table as $i => $agent) {
-            $table[$i] = new Agent(...$agent);
-        }
-        return $table;
-    }
 
     public function formatsAgents(): array
     {
-        $agents = $this->readAgents();
+        $agents = $this->getAgents();
         $formatedAgents = [];
         foreach ($agents as $agent) {
             $idAgent = $agent->getId();

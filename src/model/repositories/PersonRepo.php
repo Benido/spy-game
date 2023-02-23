@@ -36,7 +36,8 @@ class PersonRepo extends CRUD
         ];
     }
 
-    public function readPersons()
+    //generates an array containing class instances of the Entity
+    public function getPersons(): array
     {
         $table = parent::read(
             'SELECT * FROM spy_database.person'
@@ -47,9 +48,20 @@ class PersonRepo extends CRUD
         return $table;
     }
 
+    //generates a table of values
+    public function readPersons(): array
+    {
+        return $table = parent::read(
+            'SELECT id_person, identification_code, first_name, last_name, birth_date, nationality.name as nationality
+                 FROM spy_database.person
+                 JOIN spy_database.nationality
+                 ON person.nationality = nationality.id_nationality'
+        );
+    }
+
     public function getFormatedAvailablePersons(): array
     {
-        $persons = $this->readPersons();
+        $persons = $this->getPersons();
         $unavailablePersons = parent::readColumns(
             'SELECT id_person FROM spy_database.person JOIN spy_database.agent on id_person = agent.person 
                  UNION 
@@ -82,6 +94,9 @@ class PersonRepo extends CRUD
     public function insertPerson ($array): bool
     {
         unset($array['action']);
+        if ($array['birth_date'] < '1900-01-01' ) {
+            throw new Exception('Veuillez sélectionner une date postérieure au 01/01/1900');
+        }
         foreach ($array as $column => $value) {
             $columns[] = $column;
             $values[] = $value;

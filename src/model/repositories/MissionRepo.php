@@ -9,6 +9,7 @@ require_once ('../../model/repositories/ContactRepo.php');
 require_once ('../../model/repositories/MissionTypeRepo.php');
 require_once ('../../model/repositories/HideoutRepo.php');
 require_once ('../../model/repositories/SpecialisationRepo.php');
+require_once('../../../constants.php');
 
 class MissionRepo extends CRUD
 {
@@ -45,7 +46,12 @@ class MissionRepo extends CRUD
         ];
     }
 
-    public function readMissions () {
+    public function readMissions(): array
+    {
+        return $table = parent::read(BACKEND_MISSION_SQL);
+    }
+
+    public function getMissions () {
         $table = parent::read(
             'SELECT * FROM spy_database.mission'
         );
@@ -108,6 +114,9 @@ class MissionRepo extends CRUD
     public function insertMission ($array): bool
     {
         unset($array['action']);
+        if (($array['start_date'] || $array['end_date']) < '1900-01-01' ) {
+            throw new Exception('Veuillez sélectionner une date postérieure au 01/01/1900');
+        }
         foreach ($array as $column => $value) {
             $columns[] = $column;
             $values[] = $value;
